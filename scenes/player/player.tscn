@@ -17,3 +17,20 @@ region_rect = Rect2(-0.119232, 2.34163, 18.439, 34.1702)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_0re8f")
+
+[node name="FireballPositions" type="Node2D" parent="."]
+
+[node name="Marker2D" type="Marker2D" parent="FireballPositions"]
+position = Vector2(9, -4)
+
+[node name="Marker2D2" type="Marker2D" parent="FireballPositions"]
+position = Vector2(9, 0)
+
+[node name="Marker2D3" type="Marker2D" parent="FireballPositions"]
+position = Vector2(9, 3)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

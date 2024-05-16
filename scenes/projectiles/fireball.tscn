@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://de0gppf6vq7la"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/fireball.gd" id="1_8rot5"]
+[ext_resource type="Texture2D" uid="uid://dkkfmtvxm2v0" path="res://mario_and_items.png" id="1_p66g6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6vveg"]
+radius = 6.0
+
+[node name="Fireball" type="Area2D"]
+script = ExtResource("1_8rot5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+texture = ExtResource("1_p66g6")
+region_enabled = true
+region_rect = Rect2(2.97014, 147.647, 10.2699, 10.8105)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_6vveg")
