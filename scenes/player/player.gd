@@ -7,7 +7,7 @@ var player_direction = Vector2.RIGHT
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	position = Vector2(200, 100)
+	position = Vector2(0, 100)
 
 #var i: int = 0
 
