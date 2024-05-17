@@ -32,6 +32,7 @@ func _process(_delta):
 		var fireball_markers = $FireballPositions.get_children()
 		var selected_fireball = fireball_markers[randi() % fireball_markers.size()]
 		fireball_shot.emit(selected_fireball.global_position, player_direction)
+		$GPUParticles2D.emitting = true
 		#print(selected_fireball.global_position)
 		$Timer.start()
 		

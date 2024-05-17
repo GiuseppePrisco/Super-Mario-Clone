@@ -12,9 +12,9 @@ func _process(delta):
 	pass
 
 
-func _on_player_fireball_shot(position, direction):
+func _on_player_fireball_shot(pos, direction):
 	var fireball = fireball_scene.instantiate()
-	fireball.position = position
+	fireball.position = pos
 	fireball.rotation = direction.angle()
 	fireball.direction = direction
 	#print(direction)

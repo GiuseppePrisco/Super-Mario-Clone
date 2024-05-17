@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://ceckgk4vekbvc"]
+
+[ext_resource type="Texture2D" uid="uid://dkkfmtvxm2v0" path="res://mario_and_items.png" id="1_3ase6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_orseg"]
+
+[sub_resource type="Gradient" id="Gradient_e1jw2"]
+colors = PackedColorArray(0.721569, 0.396078, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3454n"]
+gradient = SubResource("Gradient_e1jw2")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_8qejy"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 12.45
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+color = Color(1, 1, 0.678431, 1)
+color_ramp = SubResource("GradientTexture1D_3454n")
+
+[node name="Star" type="Area2D"]
+collision_layer = 8
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3ase6")
+region_enabled = true
+region_rect = Rect2(54.4035, 126.513, 16.8913, 18.3778)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_orseg")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_8qejy")
+lifetime = 0.5

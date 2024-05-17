@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4y21gkm85dg"]
+[gd_scene load_steps=7 format=3 uid="uid://b4y21gkm85dg"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_ffa7i"]
 [ext_resource type="PackedScene" uid="uid://dvd1143ycud8w" path="res://scenes/player/player.tscn" id="2_0p8rr"]
 [ext_resource type="Texture2D" uid="uid://bdvlxf561ed14" path="res://blocks.png" id="4_4da3f"]
+[ext_resource type="PackedScene" uid="uid://ceckgk4vekbvc" path="res://scenes/projectiles/star.tscn" id="4_ovkih"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wo6gj"]
 resource_name = "blocks"
@@ -1012,5 +1013,7 @@ position = Vector2(0, 100)
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -50)
 position_smoothing_enabled = true
+
+[node name="Star" parent="." instance=ExtResource("4_ovkih")]
 
 [connection signal="fireball_shot" from="Player" to="." method="_on_player_fireball_shot"]
