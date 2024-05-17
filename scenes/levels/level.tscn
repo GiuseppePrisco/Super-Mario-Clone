@@ -1016,4 +1016,7 @@ position_smoothing_enabled = true
 
 [node name="Star" parent="." instance=ExtResource("4_ovkih")]
 
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+energy = 0.2
+
 [connection signal="fireball_shot" from="Player" to="." method="_on_player_fireball_shot"]

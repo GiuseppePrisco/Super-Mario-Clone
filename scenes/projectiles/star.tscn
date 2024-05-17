@@ -24,13 +24,13 @@ color_ramp = SubResource("GradientTexture1D_3454n")
 [node name="Star" type="Area2D"]
 collision_layer = 8
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_orseg")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3ase6")
 region_enabled = true
 region_rect = Rect2(54.4035, 126.513, 16.8913, 18.3778)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_orseg")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 amount = 20

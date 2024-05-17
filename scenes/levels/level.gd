@@ -20,5 +20,5 @@ func _on_player_fireball_shot(pos, direction):
 	#print(direction)
 	$Projectiles.add_child(fireball)
 	
-#	add_child(fireball)
+	#add_child(fireball)
 	#print("fireball shot")
