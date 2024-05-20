@@ -1,9 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4y21gkm85dg"]
+[gd_scene load_steps=9 format=3 uid="uid://b4y21gkm85dg"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_ffa7i"]
 [ext_resource type="PackedScene" uid="uid://dvd1143ycud8w" path="res://scenes/player/player.tscn" id="2_0p8rr"]
 [ext_resource type="Texture2D" uid="uid://bdvlxf561ed14" path="res://blocks.png" id="4_4da3f"]
 [ext_resource type="PackedScene" uid="uid://ceckgk4vekbvc" path="res://scenes/projectiles/star.tscn" id="4_ovkih"]
+[ext_resource type="PackedScene" uid="uid://bj3ddmrmbg1fd" path="res://scenes/user interface/menu.tscn" id="5_h52ui"]
+[ext_resource type="PackedScene" uid="uid://bb6jby0tuabex" path="res://scenes/user interface/ui.tscn" id="6_o64tm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wo6gj"]
 resource_name = "blocks"
@@ -1018,5 +1020,9 @@ position_smoothing_enabled = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.2
+
+[node name="Menu" parent="." instance=ExtResource("5_h52ui")]
+
+[node name="UI" parent="." instance=ExtResource("6_o64tm")]
 
 [connection signal="fireball_shot" from="Player" to="." method="_on_player_fireball_shot"]

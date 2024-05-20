@@ -1,0 +1,71 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj3ddmrmbg1fd"]
+
+[ext_resource type="Script" path="res://scenes/user interface/menu.gd" id="1_026cl"]
+
+[node name="Menu" type="CanvasLayer"]
+script = ExtResource("1_026cl")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartButton" type="Button" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -48.0
+offset_top = -15.5
+offset_right = 48.0
+offset_bottom = 15.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Start Game"
+
+[node name="GamePaused" type="Panel" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="GamePaused"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ResumeButton" type="Button" parent="GamePaused/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="GameNotPaused" type="HBoxContainer" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -55.0
+offset_bottom = 40.0
+grow_horizontal = 0
+
+[node name="PauseButton" type="Button" parent="GameNotPaused"]
+layout_mode = 2
+action_mode = 0
+text = "Pause"
+
+[connection signal="pressed" from="ColorRect/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="GamePaused/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="GameNotPaused/PauseButton" to="." method="_on_pause_button_pressed"]
