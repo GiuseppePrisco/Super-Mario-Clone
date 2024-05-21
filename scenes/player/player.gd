@@ -1,15 +1,20 @@
 extends CharacterBody2D
 
+#TODO DELETE THESE 2 SIGNALS and the flag
 signal fireball_shot(pos, direction)
-
+signal mushroom_shot(pos, direction)
 var can_fireball = true
+
+
+signal projectile_shot(projectile_name, pos, direction)
+
+
 var player_direction = Vector2.RIGHT
-#var player_is_flipped = false
 
 
 func _ready():
 	position = Vector2(20, 100)
-
+	
 
 func _process(_delta):
 	
@@ -39,6 +44,8 @@ func _process(_delta):
 #	if input_direction != Vector2(0, 0):
 #		player_direction = (target - position).normalized()
 		
+		
+	# projectile triggered by the user
 	if Input.is_action_just_pressed("fireball") and can_fireball:
 		can_fireball = false
 		var fireball_markers = $FireballPositions.get_children()
@@ -56,32 +63,20 @@ func _process(_delta):
 		
 		$Timer.start()
 		
-#	if Input.is_action_pressed("left"):
-#		position.x -= 100 * delta
-#
-#	if Input.is_action_pressed("right"):
-#		position.x += 100 * delta
-#
-#	if Input.is_action_pressed("up"):
-#		position.y -= 100 * delta
-#
-#	if Input.is_action_pressed("down"):
-#		position.y += 100 * delta
 	
+		
+		
+	#	TODO CHANGE THE TIMER AND MAKE IT SO IT USES A CUSTOM TIME DEPENDING ON THE PROJECTILE
+	for projectile in Globals.projectiles:
+		if Globals.projectiles[projectile].can_be_fired:
+			Globals.projectiles[projectile].can_be_fired = false
+			projectile_shot.emit(projectile, position, player_direction)
+			$Timer.set_wait_time(Globals.projectiles[projectile].cooldown)
+			$Timer.start()
+		
 	
-	
-#	if rotation_degrees > 180 || rotation_degrees < 0:
-#		direction = -direction
-#
-#	rotation_degrees += direction*100*delta
-	
-#	while i < 1000:
-#		if i % 10 == 0:
-#			scale += Vector2(0.1, 0.1)
-#
-#		print(i)
-#		i += 1
-
 
 func _on_timer_timeout():
+#	TODO DELETE FLAG AND MAKE CUSTOM TIMER SO THAT IT RESETS THAT TYPE OF PROJECTILE
 	can_fireball = true
+	Globals.projectiles["mushroom"].can_be_fired = true

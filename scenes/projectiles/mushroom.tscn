@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://4frvdvkjraoe"]
+
+[ext_resource type="PackedScene" uid="uid://dfrychr3kuydw" path="res://scenes/projectiles/projectile_container.tscn" id="1_7kute"]
+[ext_resource type="Script" path="res://scenes/projectiles/mushroom.gd" id="2_m45xn"]
+[ext_resource type="Texture2D" uid="uid://dkkfmtvxm2v0" path="res://mario_and_items.png" id="3_qs41n"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7fmu3"]
+radius = 9.0
+
+[node name="Mushroom" instance=ExtResource("1_7kute")]
+script = ExtResource("2_m45xn")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(1, 0)
+texture = ExtResource("3_qs41n")
+region_enabled = true
+region_rect = Rect2(-0.0824127, 91.2965, 18.1075, 17.0264)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_7fmu3")

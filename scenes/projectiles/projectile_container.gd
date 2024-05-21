@@ -1,18 +1,22 @@
 extends Area2D
+class_name ProjectileContainer
 
-var speed: int = 300
+var movement_speed: int = 300
 var direction: Vector2 = Vector2.UP
+var rotation_speed: int = 50
+
+var projectile_name = "placeholder"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Timer.set_wait_time(1)
+	$Timer.set_wait_time(Globals.projectiles[projectile_name].duration)
 	$Timer.start()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	position += direction * speed * delta
-	rotation += 50 * delta
+	position += direction * movement_speed * delta
+	rotation += rotation_speed * delta
 
 
 func _on_body_entered(body):

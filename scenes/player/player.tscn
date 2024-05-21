@@ -58,4 +58,5 @@ process_material = SubResource("ParticleProcessMaterial_4ejhl")
 lifetime = 0.05
 one_shot = true
 
+[connection signal="fireball_shot" from="." to="." method="_on_fireball_shot"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

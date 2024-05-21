@@ -1026,3 +1026,4 @@ visible = false
 [node name="UI" parent="." instance=ExtResource("6_o64tm")]
 
 [connection signal="fireball_shot" from="Player" to="." method="_on_player_fireball_shot"]
+[connection signal="projectile_shot" from="Player" to="." method="_on_player_projectile_shot"]
