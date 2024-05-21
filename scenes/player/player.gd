@@ -1,39 +1,59 @@
 extends CharacterBody2D
 
-signal fireball_shot(position, direction)
+signal fireball_shot(pos, direction)
 
 var can_fireball = true
 var player_direction = Vector2.RIGHT
+#var player_is_flipped = false
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
-	position = Vector2(0, 100)
+	position = Vector2(20, 100)
 
-#var i: int = 0
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	
 	#input
-	var direction = Input.get_vector("left", "right", "up", "down")
-	velocity = direction * 200
+	var input_direction = Input.get_vector("left", "right", "up", "down")
+	velocity = input_direction * 200
 	move_and_slide()
 	
-	#rotate
-	var target = position + direction
-	look_at(target)
-	#print(position + direction)
 	
-	if direction != Vector2(0, 0):
-		player_direction = (target - position).normalized()
+	# rotate the character sprite
+	if input_direction.x > 0 and player_direction != Vector2.RIGHT:
+		player_direction = Vector2.RIGHT
+		scale.x = -scale.x
+	
+	if input_direction.x < 0 and player_direction != Vector2.LEFT:
+		player_direction = Vector2.LEFT
+		scale.x = -scale.x
+	
+	
+#	print("position", position)
+	
+	
+#	#rotate
+#	var target = position + input_direction
+#	target = position + player_direction
+#	look_at(target)
+#	if input_direction != Vector2(0, 0):
+#		player_direction = (target - position).normalized()
 		
 	if Input.is_action_just_pressed("fireball") and can_fireball:
 		can_fireball = false
 		var fireball_markers = $FireballPositions.get_children()
 		var selected_fireball = fireball_markers[randi() % fireball_markers.size()]
 		fireball_shot.emit(selected_fireball.global_position, player_direction)
+#		fireball_shot.emit(selected_fireball.position, player_direction)		
 		$GPUParticles2D.emitting = true
-		#print(selected_fireball.global_position)
+		
+		print("marker pos", selected_fireball.position)
+		print("marker global pos", selected_fireball.global_position)
+		print("fireball pos", selected_fireball.global_position)
+		print("player pos", position)
+		print("player global pos", global_position)
+		
+		
 		$Timer.start()
 		
 #	if Input.is_action_pressed("left"):

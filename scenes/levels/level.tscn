@@ -1010,7 +1010,6 @@ layer_1/tile_data = PackedInt32Array(458746, 0, 0, -131067, 0, 0, -65531, 0, 0, 
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_0p8rr")]
-position = Vector2(0, 100)
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -50)
@@ -1022,6 +1021,7 @@ position_smoothing_enabled = true
 energy = 0.2
 
 [node name="Menu" parent="." instance=ExtResource("5_h52ui")]
+visible = false
 
 [node name="UI" parent="." instance=ExtResource("6_o64tm")]
 

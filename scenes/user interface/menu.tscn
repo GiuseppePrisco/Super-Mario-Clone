@@ -6,6 +6,7 @@
 script = ExtResource("1_026cl")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,7 +29,6 @@ grow_vertical = 2
 text = "Start Game"
 
 [node name="GamePaused" type="Panel" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -53,7 +53,12 @@ grow_vertical = 2
 layout_mode = 2
 text = "Resume"
 
+[node name="HomeButton" type="Button" parent="GamePaused/VBoxContainer"]
+layout_mode = 2
+text = "Home"
+
 [node name="GameNotPaused" type="HBoxContainer" parent="."]
+visible = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
@@ -68,4 +73,5 @@ text = "Pause"
 
 [connection signal="pressed" from="ColorRect/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="GamePaused/VBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="GamePaused/VBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="GameNotPaused/PauseButton" to="." method="_on_pause_button_pressed"]
