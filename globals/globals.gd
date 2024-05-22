@@ -1,6 +1,10 @@
 extends Node
 
-var projectiles = {
+# player global position
+var player_position: Vector2
+
+# projectiles stats
+var original_projectiles = {
 	"fireball": {
 		"movement_speed": 300,
 		"direction": Vector2.UP,
@@ -20,3 +24,14 @@ var projectiles = {
 		"can_be_fired": true,
 	},
 }
+var projectiles = original_projectiles.duplicate(true)
+
+
+# enemy stats
+
+
+
+func reset_game_stats():
+	projectiles = original_projectiles.duplicate(true)
+
+	

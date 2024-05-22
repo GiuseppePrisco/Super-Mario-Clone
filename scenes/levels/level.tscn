@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4y21gkm85dg"]
+[gd_scene load_steps=10 format=3 uid="uid://b4y21gkm85dg"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_ffa7i"]
 [ext_resource type="PackedScene" uid="uid://dvd1143ycud8w" path="res://scenes/player/player.tscn" id="2_0p8rr"]
+[ext_resource type="PackedScene" uid="uid://br4yi3n4mn813" path="res://scenes/enemies/goomba.tscn" id="3_jby52"]
 [ext_resource type="Texture2D" uid="uid://bdvlxf561ed14" path="res://blocks.png" id="4_4da3f"]
 [ext_resource type="PackedScene" uid="uid://ceckgk4vekbvc" path="res://scenes/projectiles/star.tscn" id="4_ovkih"]
 [ext_resource type="PackedScene" uid="uid://bj3ddmrmbg1fd" path="res://scenes/user interface/menu.tscn" id="5_h52ui"]
@@ -1007,18 +1008,32 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(458746, 0, 0, -131067, 0, 0, -65531, 0, 0, 5, 0, 0, 65541, 0, 0, 131077, 0, 0, 196613, 0, 0, 262149, 0, 0, 393221, 0, 0, 327685, 0, 0, -65542, 0, 0, -6, 0, 0, 65530, 0, 0, 131066, 0, 0, 196602, 0, 0, 262138, 0, 0, 327674, 0, 0, 393210, 0, 0)
 
+[node name="Enemies" type="Node2D" parent="."]
+
 [node name="Projectiles" type="Node2D" parent="."]
 
+[node name="Goomba" parent="Projectiles" instance=ExtResource("3_jby52")]
+position = Vector2(161, 9)
+collision_mask = 11
+
+[node name="Goomba2" parent="Projectiles" instance=ExtResource("3_jby52")]
+position = Vector2(151, 50)
+collision_mask = 11
+
 [node name="Player" parent="." instance=ExtResource("2_0p8rr")]
+metadata/_edit_lock_ = true
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 offset = Vector2(0, -50)
 position_smoothing_enabled = true
+metadata/_edit_lock_ = true
 
 [node name="Star" parent="." instance=ExtResource("4_ovkih")]
+position = Vector2(-94, -81)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.2
+metadata/_edit_lock_ = true
 
 [node name="Menu" parent="." instance=ExtResource("5_h52ui")]
 visible = false

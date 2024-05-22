@@ -32,6 +32,7 @@ func _on_start_button_pressed():
 	$GameNotPaused.show()
 	get_tree().paused = false
 	game_started = true
+	Globals.reset_game_stats()
 
 
 func _on_resume_button_pressed():

@@ -19,6 +19,9 @@ func _ready():
 
 func _process(_delta):
 	
+	# update player position
+	Globals.player_position = global_position
+	
 	#input
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * 200
@@ -78,7 +81,11 @@ func _process(_delta):
 			timer.set_name("Timer_for_projectile_" + str(projectile))
 			timer.set_wait_time(Globals.projectiles[projectile].cooldown)
 			timer.one_shot = true
-			timer.timeout.connect(Callable(self, "_on_Timer_timeout"))
+			
+			# they are equivalent
+#			timer.timeout.connect(Callable(self, "_on_Timer_timeout"))
+			timer.connect("timeout", _on_Timer_timeout)
+
 			add_child(timer)
 			timer.start()
 			cooldown_timers[projectile] = timer
