@@ -8,6 +8,7 @@ var can_fireball = true
 
 signal projectile_shot(projectile_name, pos, direction)
 
+var cooldown_timers = {}
 
 var player_direction = Vector2.RIGHT
 
@@ -44,7 +45,8 @@ func _process(_delta):
 #	if input_direction != Vector2(0, 0):
 #		player_direction = (target - position).normalized()
 		
-		
+	
+	# TODO RENAME THE FUNCTION AND VARIABLES TO AN ABILITY THE USER CAN USE AFTER X SECONDS
 	# projectile triggered by the user
 	if Input.is_action_just_pressed("fireball") and can_fireball:
 		can_fireball = false
@@ -66,17 +68,29 @@ func _process(_delta):
 	
 		
 		
-	#	TODO CHANGE THE TIMER AND MAKE IT SO IT USES A CUSTOM TIME DEPENDING ON THE PROJECTILE
 	for projectile in Globals.projectiles:
 		if Globals.projectiles[projectile].can_be_fired:
 			Globals.projectiles[projectile].can_be_fired = false
 			projectile_shot.emit(projectile, position, player_direction)
-			$Timer.set_wait_time(Globals.projectiles[projectile].cooldown)
-			$Timer.start()
+			
+			# create a timer for each projectile
+			var timer = Timer.new()
+			timer.set_name("Timer_for_projectile_" + str(projectile))
+			timer.set_wait_time(Globals.projectiles[projectile].cooldown)
+			timer.one_shot = true
+			timer.timeout.connect(Callable(self, "_on_Timer_timeout"))
+			add_child(timer)
+			timer.start()
+			cooldown_timers[projectile] = timer
+			
 		
 	
 
-func _on_timer_timeout():
-#	TODO DELETE FLAG AND MAKE CUSTOM TIMER SO THAT IT RESETS THAT TYPE OF PROJECTILE
-	can_fireball = true
-	Globals.projectiles["mushroom"].can_be_fired = true
+func _on_Timer_timeout():
+	for projectile in cooldown_timers.keys():
+		if not cooldown_timers[projectile].is_stopped():
+			continue
+		Globals.projectiles[projectile].can_be_fired = true
+		cooldown_timers[projectile].queue_free()
+		cooldown_timers.erase(projectile)
+	

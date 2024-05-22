@@ -37,4 +37,4 @@ func _on_player_projectile_shot(projectile_name, pos, direction):
 	projectile.rotation = direction.angle()
 	projectile.direction = direction
 	$Projectiles.add_child(projectile)
-	print(projectile)
+#	print(projectile)

@@ -1,4 +1,5 @@
 extends ProjectileContainer
 
 func _ready():
-	projectile_name = "mushroom"
+	var projectile_name = "mushroom"	
+	setup(projectile_name)
