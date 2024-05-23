@@ -2,11 +2,15 @@ extends Area2D
 class_name ProjectileContainer
 
 # placeholder values
-var movement_speed: int = 300
-var direction: Vector2 = Vector2.UP
-var rotation_speed: int = 50
+#var movement_speed: int = 300
+#var direction: Vector2 = Vector2.UP
+#var rotation_speed: int = 50
 
-var projectile = "placeholder"
+var movement_speed: int
+var direction: Vector2 = Vector2.UP
+var rotation_speed: int
+
+var projectile
 
 func setup(projectile_name):
 	projectile = projectile_name	
@@ -29,7 +33,7 @@ func _process(delta):
 func _on_body_entered(body):
 	# TODO
 	if "hit" in body:
-		body.hit()
+		body.hit(Globals.projectiles[projectile].damage)
 	
 	#delete the object
 	queue_free()

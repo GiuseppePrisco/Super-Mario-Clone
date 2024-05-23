@@ -1,21 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://br4yi3n4mn813"]
+[gd_scene load_steps=5 format=3 uid="uid://cv7052hlo24ml"]
 
 [ext_resource type="PackedScene" uid="uid://dh0532janr06w" path="res://scenes/enemies/enemy_container.tscn" id="1_tqhwl"]
-[ext_resource type="Script" path="res://scenes/enemies/goomba.gd" id="2_78r8p"]
 [ext_resource type="Texture2D" uid="uid://ca1upgd0buu1x" path="res://enemies.png" id="2_ce7nj"]
+[ext_resource type="Script" path="res://scenes/enemies/goomba.gd" id="2_kubvc"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ikh1a"]
-size = Vector2(18, 18)
+[sub_resource type="CircleShape2D" id="CircleShape2D_dxrgw"]
 
 [node name="Goomba" instance=ExtResource("1_tqhwl")]
-rotation = 1.5708
-script = ExtResource("2_78r8p")
+script = ExtResource("2_kubvc")
 
 [node name="Sprite2D" parent="." index="0"]
-position = Vector2(0, 1)
+position = Vector2(1, 0)
 texture = ExtResource("2_ce7nj")
 region_enabled = true
-region_rect = Rect2(-0.108343, 18.9454, 18.648, 18.3778)
+region_rect = Rect2(-0.216858, 19.0809, 18.1075, 17.9724)
 
 [node name="CollisionShape2D" parent="." index="1"]
-shape = SubResource("RectangleShape2D_ikh1a")
+shape = SubResource("CircleShape2D_dxrgw")

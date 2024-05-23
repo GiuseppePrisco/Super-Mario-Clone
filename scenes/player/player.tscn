@@ -23,7 +23,7 @@ color = Color(0.592157, 0, 0, 1)
 color_ramp = SubResource("GradientTexture1D_3uf88")
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 30
+collision_mask = 20
 script = ExtResource("1_32uo1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -57,6 +57,11 @@ amount = 30
 process_material = SubResource("ParticleProcessMaterial_4ejhl")
 lifetime = 0.05
 one_shot = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -50)
+position_smoothing_enabled = true
+metadata/_edit_lock_ = true
 
 [connection signal="fireball_shot" from="." to="." method="_on_fireball_shot"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -68,7 +68,7 @@ func _process(_delta):
 		
 		$Timer.start()
 		
-	
+		
 		
 		
 	for projectile in Globals.projectiles:

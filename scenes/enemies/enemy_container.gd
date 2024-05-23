@@ -1,42 +1,45 @@
 extends CharacterBody2D
 class_name EnemyContainer
 
+var enemy: String
+var health: int
+var movement_speed: int
 
-# placeholder values
-var movement_speed: int = 300
-#var direction: Vector2 = Vector2.UP
-#var rotation_speed: int = 50
+var rotation_threshold = 10
 
 
+func setup(enemy_name):
+	enemy = enemy_name
+	movement_speed = Globals.enemies[enemy].movement_speed
+	health = Globals.enemies[enemy].health
 
 func _process(delta):
 	
-	# TODO DELETE THIS AND MAKE THE ENEMY MIRROR (CHANGE THE SCALE) JUST LIKE THE PLAYER
-	look_at(Globals.player_position)
+	# rotate the character sprite
+	if should_rotate():
+		$Sprite2D.flip_h = !$Sprite2D.flip_h
 	
 	var player_direction = (Globals.player_position - global_position).normalized()
 	
-	# TODO CHANGE THE MOVEMENT OPTIONS
-	velocity = player_direction * 50
+	velocity = player_direction * movement_speed
 	move_and_slide()
 	
-	#TEST WITH AREA2D
-#	position += player_direction * 50 * delta
 	
-	# TODO TEST WITH MOVE AND COLLIDE
-#	var collision = move_and_collide(velocity * delta)
-#	if collision:
-#		if collision.get_collider().get_collision_layer() == 1:
-#			print(collision)
-#
-	
-	
-	
-	
+func should_rotate() -> bool:
+	if $Sprite2D.flip_h == true and global_position.x >= Globals.player_position.x + rotation_threshold:
+		# enemy is at the right side of the character		
+		return true
+	else:
+		if $Sprite2D.flip_h == false and global_position.x < Globals.player_position.x - rotation_threshold:
+			# enemy is at the left side of the character		
+			return true
+	return false
 	
 
-func hit():
-	print("enemy hit")
-
+func hit(damage):
+	health -= damage
+	if health <= 0:
+		queue_free()
+	
 
 
