@@ -52,6 +52,11 @@ var items = {
 		"acceleration": 100,
 		"duration": 10,
 	},
+	"green_mushroom": {
+		"movement_speed": 50,
+		"acceleration": 100,
+		"duration": 10,
+	},
 }
 
 

@@ -8,7 +8,7 @@
 radius = 6.08276
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_b8ri4"]
-radius = 78.0577
+radius = 56.0089
 
 [sub_resource type="Gradient" id="Gradient_vhscv"]
 colors = PackedColorArray(0.721569, 0.396078, 0, 1, 1, 1, 1, 1)

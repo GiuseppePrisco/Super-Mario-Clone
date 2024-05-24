@@ -31,7 +31,7 @@ func _on_body_entered(body):
 	if "hit" in body:
 		body.hit(Globals.projectiles[projectile].damage)
 	
-	#delete the object
+	# delete the projectile
 	queue_free()
 
 

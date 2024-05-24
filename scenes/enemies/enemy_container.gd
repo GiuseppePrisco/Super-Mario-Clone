@@ -8,6 +8,7 @@ var movement_speed: int
 
 var rotation_threshold = 10
 
+signal death(item_name, pos)
 
 func setup(enemy_name):
 	enemy = enemy_name
@@ -46,8 +47,8 @@ func hit(damage):
 	
 
 func enemy_death():
-		
-	
+		death.emit("green_mushroom", position)
+#		print("death", death)
 		queue_free()
 	
 

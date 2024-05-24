@@ -14,7 +14,8 @@ var player_direction = Vector2.RIGHT
 
 
 func _ready():
-	position = Vector2(20, 100)
+#	position = Vector2(20, 100)
+	pass
 	
 
 func _process(_delta):

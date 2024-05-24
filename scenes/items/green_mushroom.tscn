@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://f7cd6lkhf655"]
+
+[ext_resource type="PackedScene" uid="uid://cxdqgkoxj1a0" path="res://scenes/items/item_container.tscn" id="1_ebhfr"]
+[ext_resource type="Script" path="res://scenes/items/green_mushroom.gd" id="2_kam50"]
+[ext_resource type="Texture2D" uid="uid://dkkfmtvxm2v0" path="res://mario_and_items.png" id="2_qp1d5"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_78lmo"]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0sbdy"]
+radius = 11.0
+
+[node name="GreenMushroom" instance=ExtResource("1_ebhfr")]
+script = ExtResource("2_kam50")
+
+[node name="Sprite2D" parent="Area2D" index="0"]
+texture = ExtResource("2_qp1d5")
+region_enabled = true
+region_rect = Rect2(36.2423, 91.5934, 17.1616, 16.2157)
+
+[node name="CollisionShape2D" parent="Area2D" index="1"]
+shape = SubResource("CircleShape2D_78lmo")
+
+[node name="CollisionShape2D" parent="ReceptionField" index="0"]
+shape = SubResource("CircleShape2D_0sbdy")

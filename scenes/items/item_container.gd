@@ -33,12 +33,10 @@ func _process(delta):
 
 
 func _on_reception_field_body_entered(body):
-	print("reception field", body)
 	should_be_collected = true
 
 
 func _on_collision_body_entered(body):
-	print("collision", body)
 	queue_free()
 
 

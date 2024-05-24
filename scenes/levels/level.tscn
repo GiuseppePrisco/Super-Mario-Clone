@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://cv3wtxyuvao6w"]
+[gd_scene load_steps=11 format=3 uid="uid://cv3wtxyuvao6w"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_ffa7i"]
 [ext_resource type="PackedScene" uid="uid://dvd1143ycud8w" path="res://scenes/player/player.tscn" id="2_0p8rr"]
-[ext_resource type="PackedScene" uid="uid://cv7052hlo24ml" path="res://scenes/enemies/goomba.tscn" id="3_jby52"]
 [ext_resource type="Texture2D" uid="uid://bdvlxf561ed14" path="res://blocks.png" id="4_4da3f"]
 [ext_resource type="PackedScene" uid="uid://nvmyle18nb46" path="res://scenes/enemies/bowser.tscn" id="4_78j5d"]
 [ext_resource type="PackedScene" uid="uid://bj3ddmrmbg1fd" path="res://scenes/user interface/menu.tscn" id="5_h52ui"]
@@ -1011,68 +1010,21 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(458746, 0, 0, -131067, 0, 0, -65531, 0, 0, 5, 0, 0, 65541, 0, 0, 131077, 0, 0, 196613, 0, 0, 262149, 0, 0, 393221, 0, 0, 327685, 0, 0, -65542, 0, 0, -6, 0, 0, 65530, 0, 0, 131066, 0, 0, 196602, 0, 0, 262138, 0, 0, 327674, 0, 0, 393210, 0, 0)
 
-[node name="Enemies" type="Node2D" parent="."]
-
-[node name="Goomba" parent="Enemies" instance=ExtResource("3_jby52")]
-position = Vector2(203, 76)
-
-[node name="Goomba2" parent="Enemies" instance=ExtResource("3_jby52")]
-position = Vector2(222, 129)
-
-[node name="Goomba3" parent="Enemies" instance=ExtResource("3_jby52")]
-position = Vector2(132, 133)
-
-[node name="Goomba4" parent="Enemies" instance=ExtResource("3_jby52")]
-position = Vector2(22, 166)
-
-[node name="Goomba5" parent="Enemies" instance=ExtResource("3_jby52")]
-position = Vector2(71, 191)
-
-[node name="Goomba6" parent="Enemies" instance=ExtResource("3_jby52")]
-position = Vector2(139, 184)
-
-[node name="Goomba7" parent="Enemies" instance=ExtResource("3_jby52")]
-position = Vector2(190, 183)
-
-[node name="Goomba8" parent="Enemies" instance=ExtResource("3_jby52")]
-position = Vector2(175, 44)
-
-[node name="Bowser" parent="Enemies" instance=ExtResource("4_78j5d")]
-position = Vector2(179, -77)
-
-[node name="Bowser2" parent="Enemies" instance=ExtResource("4_78j5d")]
-position = Vector2(49, -120)
-
-[node name="Bowser3" parent="Enemies" instance=ExtResource("4_78j5d")]
-position = Vector2(-128, -117)
-
-[node name="Bowser4" parent="Enemies" instance=ExtResource("4_78j5d")]
-position = Vector2(-199, -7)
-
-[node name="Bowser5" parent="Enemies" instance=ExtResource("4_78j5d")]
-position = Vector2(-186, 128)
-
-[node name="Koopa" parent="Enemies" instance=ExtResource("5_jxuke")]
-position = Vector2(-76, 203)
-
-[node name="Koopa2" parent="Enemies" instance=ExtResource("5_jxuke")]
-position = Vector2(-182, 211)
-
-[node name="Koopa3" parent="Enemies" instance=ExtResource("5_jxuke")]
-position = Vector2(-246, -130)
-
-[node name="Koopa4" parent="Enemies" instance=ExtResource("5_jxuke")]
-position = Vector2(-10, -159)
-
-[node name="Koopa5" parent="Enemies" instance=ExtResource("5_jxuke")]
-position = Vector2(134, -141)
-
 [node name="Items" type="Node2D" parent="."]
 
 [node name="Star" parent="Items" instance=ExtResource("6_cud0b")]
 position = Vector2(-49, -92)
 
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Koopa" parent="Enemies" instance=ExtResource("5_jxuke")]
+position = Vector2(-61, 143)
+
+[node name="Bowser" parent="Enemies" instance=ExtResource("4_78j5d")]
+position = Vector2(151, -19)
+
 [node name="Projectiles" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_0p8rr")]
 metadata/_edit_lock_ = true
