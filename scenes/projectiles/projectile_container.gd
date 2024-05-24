@@ -1,20 +1,16 @@
 extends Area2D
 class_name ProjectileContainer
 
-# placeholder values
-#var movement_speed: int = 300
-#var direction: Vector2 = Vector2.UP
-#var rotation_speed: int = 50
+var projectile: String
 
 var movement_speed: int
 var direction: Vector2 = Vector2.UP
 var rotation_speed: int
 
-var projectile
 
 func setup(projectile_name):
-	projectile = projectile_name	
-	$Timer.set_wait_time(Globals.projectiles[projectile_name].duration)
+	projectile = projectile_name
+	$Timer.set_wait_time(Globals.projectiles[projectile].duration)
 	$Timer.start()
 
 

@@ -1,13 +1,13 @@
-[gd_scene load_steps=12 format=3 uid="uid://b4y21gkm85dg"]
+[gd_scene load_steps=12 format=3 uid="uid://cv3wtxyuvao6w"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_ffa7i"]
 [ext_resource type="PackedScene" uid="uid://dvd1143ycud8w" path="res://scenes/player/player.tscn" id="2_0p8rr"]
 [ext_resource type="PackedScene" uid="uid://cv7052hlo24ml" path="res://scenes/enemies/goomba.tscn" id="3_jby52"]
 [ext_resource type="Texture2D" uid="uid://bdvlxf561ed14" path="res://blocks.png" id="4_4da3f"]
 [ext_resource type="PackedScene" uid="uid://nvmyle18nb46" path="res://scenes/enemies/bowser.tscn" id="4_78j5d"]
-[ext_resource type="PackedScene" uid="uid://ceckgk4vekbvc" path="res://scenes/projectiles/star.tscn" id="4_ovkih"]
 [ext_resource type="PackedScene" uid="uid://bj3ddmrmbg1fd" path="res://scenes/user interface/menu.tscn" id="5_h52ui"]
 [ext_resource type="PackedScene" uid="uid://bfnut1wm2wk52" path="res://scenes/enemies/koopa.tscn" id="5_jxuke"]
+[ext_resource type="PackedScene" uid="uid://b3fgvoe8c6hwi" path="res://scenes/items/star.tscn" id="6_cud0b"]
 [ext_resource type="PackedScene" uid="uid://bb6jby0tuabex" path="res://scenes/user interface/ui.tscn" id="6_o64tm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wo6gj"]
@@ -1067,13 +1067,15 @@ position = Vector2(-10, -159)
 [node name="Koopa5" parent="Enemies" instance=ExtResource("5_jxuke")]
 position = Vector2(134, -141)
 
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Star" parent="Items" instance=ExtResource("6_cud0b")]
+position = Vector2(-49, -92)
+
 [node name="Projectiles" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_0p8rr")]
 metadata/_edit_lock_ = true
-
-[node name="Star" parent="." instance=ExtResource("4_ovkih")]
-position = Vector2(-94, -81)
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.2

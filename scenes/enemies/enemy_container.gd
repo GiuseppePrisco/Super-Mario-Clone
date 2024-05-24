@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name EnemyContainer
 
 var enemy: String
+
 var health: int
 var movement_speed: int
 
@@ -10,6 +11,8 @@ var rotation_threshold = 10
 
 func setup(enemy_name):
 	enemy = enemy_name
+	
+	# TODO move the following inside process if i am planning to make these stats change over time
 	movement_speed = Globals.enemies[enemy].movement_speed
 	health = Globals.enemies[enemy].health
 
@@ -21,7 +24,7 @@ func _process(delta):
 	
 	var player_direction = (Globals.player_position - global_position).normalized()
 	
-	velocity = player_direction * movement_speed
+	velocity = movement_speed * player_direction
 	move_and_slide()
 	
 	
@@ -39,7 +42,15 @@ func should_rotate() -> bool:
 func hit(damage):
 	health -= damage
 	if health <= 0:
+		enemy_death()
+	
+
+func enemy_death():
+		
+	
 		queue_free()
 	
+
+
 
 

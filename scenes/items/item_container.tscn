@@ -1,0 +1,22 @@
+[gd_scene load_steps=2 format=3 uid="uid://cxdqgkoxj1a0"]
+
+[ext_resource type="Script" path="res://scenes/items/item_container.gd" id="1_hlt26"]
+
+[node name="ItemContainer" type="Node2D"]
+script = ExtResource("1_hlt26")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+[node name="ReceptionField" type="Area2D" parent="."]
+collision_layer = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ReceptionField"]
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

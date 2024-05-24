@@ -29,7 +29,7 @@ var original_projectiles = {
 var projectiles = original_projectiles.duplicate(true)
 
 
-# enemy stats
+# enemies stats
 var enemies = {
 	"goomba": {
 		"movement_speed": 50,
@@ -44,6 +44,16 @@ var enemies = {
 		"health": 25,
 	},
 }
+
+# items stats
+var items = {
+	"star": {
+		"movement_speed": 50,
+		"acceleration": 100,
+		"duration": 10,
+	},
+}
+
 
 
 func reset_game_stats():
