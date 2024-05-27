@@ -8,7 +8,7 @@
 radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0sbdy"]
-radius = 11.0
+radius = 29.0
 
 [node name="GreenMushroom" instance=ExtResource("1_ebhfr")]
 script = ExtResource("2_kam50")

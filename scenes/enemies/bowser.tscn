@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://nvmyle18nb46"]
+[gd_scene load_steps=6 format=3 uid="uid://nvmyle18nb46"]
 
 [ext_resource type="PackedScene" uid="uid://dh0532janr06w" path="res://scenes/enemies/enemy_container.tscn" id="1_cl0li"]
 [ext_resource type="Script" path="res://scenes/enemies/bowser.gd" id="2_1myjy"]
 [ext_resource type="Texture2D" uid="uid://ca1upgd0buu1x" path="res://enemies.png" id="2_v8b53"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0cnks"]
-radius = 19.105
+radius = 15.0333
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_d80y6"]
+radius = 21.0238
 
 [node name="Bowser" instance=ExtResource("1_cl0li")]
 script = ExtResource("2_1myjy")
@@ -17,3 +20,6 @@ region_rect = Rect2(558.433, 0.136753, 36.2081, 37.4106)
 
 [node name="CollisionShape2D" parent="." index="1"]
 shape = SubResource("CircleShape2D_0cnks")
+
+[node name="CollisionShape2D" parent="Hitbox" index="0"]
+shape = SubResource("CircleShape2D_d80y6")

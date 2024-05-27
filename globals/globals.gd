@@ -1,7 +1,18 @@
 extends Node
 
-# player global position
-var player_position: Vector2
+# player stats
+var original_player = {
+	"position": Vector2.ZERO,
+	"movement_speed": 200,
+	"health": 200,
+	"armor": 10,
+	"level": 0,
+	"xp": 0,
+	"xp_needed": 100,
+	"xp_multiplier": 1.1,
+}
+var player = original_player.duplicate(true)
+
 
 # projectiles stats
 var original_projectiles = {
@@ -21,7 +32,7 @@ var original_projectiles = {
 		"rotation_speed": 50,
 		"damage": 25,
 		"duration": 5,
-		"pierce": 1,
+		"pierce": 2,
 		"cooldown": 1,
 		"can_be_fired": true,
 	},
@@ -34,14 +45,20 @@ var enemies = {
 	"goomba": {
 		"movement_speed": 50,
 		"health": 10,
+		"damage": 10,
+		"cooldown": 1,
 	},
 	"bowser": {
 		"movement_speed": 10,
 		"health": 100,
+		"damage": 50,
+		"cooldown": 3,
 	},
 	"koopa": {
-		"movement_speed": 30,
+		"movement_speed": 35,
 		"health": 25,
+		"damage": 25,
+		"cooldown": 2,
 	},
 }
 
@@ -53,15 +70,20 @@ var items = {
 		"duration": 10,
 	},
 	"green_mushroom": {
-		"movement_speed": 50,
+		"movement_speed": 100,
 		"acceleration": 100,
 		"duration": 10,
+		"xp": 50,
 	},
 }
 
 
+func reset_xp():
+	player["xp"] = 0
 
 func reset_game_stats():
 	projectiles = original_projectiles.duplicate(true)
+	player = original_player.duplicate(true)
+	
 
 	

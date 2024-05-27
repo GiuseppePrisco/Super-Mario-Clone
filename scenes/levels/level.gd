@@ -23,12 +23,14 @@ const MAX_POSITION_NUM: int = 10
 const MAX_ENEMY_COUNT: int = 20
 
 
+
 func _ready():
 	$Menu.show()
 	enemy_spawn_positions = get_enemy_spawn_positions(MAX_POSITION_NUM)
 
 
 func _process(delta):
+	# TODO maybe i can move this check when an enemy dies
 	if $Enemies.get_child_count() < MAX_ENEMY_COUNT:
 		spawn_enemy()
 
@@ -45,12 +47,9 @@ func get_enemy_spawn_positions(x):
 func spawn_enemy():
 	for pos in enemy_spawn_positions:
 		var enemy = enemy_scenes["goomba"].instantiate()
-#		enemy.connect("death", Callable(self, "_on_enemy_container_death(item_name, pos)").bindv(["star", pos]))
-#		enemy.connect("death", _on_enemy_container_death.bind("star", pos))
-		enemy.connect("death", _on_enemy_container_death)
+		enemy.connect("death", _on_enemy_death)
 		enemy.position = pos * enemy_spawn_positions_max_distance + $Player.position
 		$Enemies.add_child(enemy)
-#		print(enemy)
 
 
 
@@ -78,10 +77,7 @@ func _on_player_projectile_shot(projectile_name, pos, direction):
 #	print(projectile)
 
 
-func _on_enemy_container_death(item_name, pos):
-#	print(item_name)
-#	print(pos)
-	
+func _on_enemy_death(item_name, pos):
 	var item = item_scenes[item_name].instantiate()
 	item.position = pos
 	$Items.call_deferred("add_child", item)

@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name EnemyContainer
 
+signal death(item_name, pos)
+
 var enemy: String
 
 var health: int
@@ -8,7 +10,9 @@ var movement_speed: int
 
 var rotation_threshold = 10
 
-signal death(item_name, pos)
+var is_colliding_with_player: bool = false
+var should_player_take_damage: bool = true
+
 
 func setup(enemy_name):
 	enemy = enemy_name
@@ -23,18 +27,27 @@ func _process(delta):
 	if should_rotate():
 		$Sprite2D.flip_h = !$Sprite2D.flip_h
 	
-	var player_direction = (Globals.player_position - global_position).normalized()
+	var player_direction = (Globals.player["position"] - global_position).normalized()
+
 	
 	velocity = movement_speed * player_direction
 	move_and_slide()
 	
+	if is_colliding_with_player and should_player_take_damage:
+		print("player took ", Globals.enemies[enemy].damage, " damage")
+		should_player_take_damage = false
+		$Hitbox/Timer.set_wait_time(Globals.enemies[enemy].cooldown)
+		$Hitbox/Timer.start()
+	
+	
+	
 	
 func should_rotate() -> bool:
-	if $Sprite2D.flip_h == true and global_position.x >= Globals.player_position.x + rotation_threshold:
+	if $Sprite2D.flip_h == true and global_position.x >= Globals.player["position"].x + rotation_threshold:
 		# enemy is at the right side of the character		
 		return true
 	else:
-		if $Sprite2D.flip_h == false and global_position.x < Globals.player_position.x - rotation_threshold:
+		if $Sprite2D.flip_h == false and global_position.x < Globals.player["position"].x - rotation_threshold:
 			# enemy is at the left side of the character		
 			return true
 	return false
@@ -48,10 +61,21 @@ func hit(damage):
 
 func enemy_death():
 		death.emit("green_mushroom", position)
-#		print("death", death)
 		queue_free()
 	
 
+
+func _on_hitbox_body_entered(body):
+	# the player is colliding with the enemy
+	is_colliding_with_player = true
+
+func _on_hitbox_body_exited(body):
+	# the player is no longer colliding with the enemy
+	is_colliding_with_player = false
+	
+func _on_timer_timeout():
+	# the player should take damage once again
+	should_player_take_damage = true
 
 
 

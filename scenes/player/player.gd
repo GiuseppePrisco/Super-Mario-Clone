@@ -14,18 +14,18 @@ var player_direction = Vector2.RIGHT
 
 
 func _ready():
-#	position = Vector2(20, 100)
-	pass
+	position = Vector2(20, 100)
+#	pass
 	
 
 func _process(_delta):
 	
 	# update player position
-	Globals.player_position = global_position
+	Globals.player["position"] = global_position
 	
 	#input
 	var input_direction = Input.get_vector("left", "right", "up", "down")
-	velocity = input_direction * 200
+	velocity = input_direction * Globals.player["movement_speed"]
 	move_and_slide()
 	
 	

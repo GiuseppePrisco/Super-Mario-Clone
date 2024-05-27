@@ -27,7 +27,7 @@ func setup(item_name):
 func _process(delta):
 	
 	if should_be_collected:
-		var player_direction = (Globals.player_position - global_position).normalized()
+		var player_direction = (Globals.player["position"] - global_position).normalized()
 		movement_speed += acceleration * delta
 		position += movement_speed * player_direction * delta
 
@@ -37,6 +37,23 @@ func _on_reception_field_body_entered(body):
 
 
 func _on_collision_body_entered(body):
+	#TODO insert the behaviour for other items
+	if item == "green_mushroom":
+		Globals.player["xp"] += Globals.items[item].xp
+		var xp = Globals.player["xp"]
+		var xp_needed = Globals.player["xp_needed"]
+		var xp_multiplier = Globals.player["xp_multiplier"]
+		var player_level = Globals.player["level"]
+		var threshold = xp_needed * xp_multiplier ** player_level
+		
+		if xp >= threshold:
+			Globals.player["level"] += 1
+			Globals.reset_xp()
+			
+			print("current xp ", xp)
+			print("threshold ", threshold)
+			print("level ", Globals.player["level"])
+	
 	queue_free()
 
 
