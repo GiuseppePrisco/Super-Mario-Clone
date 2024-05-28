@@ -29,7 +29,7 @@ func _ready():
 	enemy_spawn_positions = get_enemy_spawn_positions(MAX_POSITION_NUM)
 
 
-func _process(delta):
+func _process(_delta):
 	# TODO maybe i can move this check when an enemy dies
 	if $Enemies.get_child_count() < MAX_ENEMY_COUNT:
 		spawn_enemy()

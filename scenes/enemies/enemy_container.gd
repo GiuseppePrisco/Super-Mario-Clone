@@ -21,7 +21,7 @@ func setup(enemy_name):
 	movement_speed = Globals.enemies[enemy].movement_speed
 	health = Globals.enemies[enemy].health
 
-func _process(delta):
+func _process(_delta):
 	
 	# rotate the character sprite
 	if should_rotate():
@@ -34,7 +34,7 @@ func _process(delta):
 	move_and_slide()
 	
 	if is_colliding_with_player and should_player_take_damage:
-		print("player took ", Globals.enemies[enemy].damage, " damage")
+#		print("player took ", Globals.enemies[enemy].damage, " damage")
 		should_player_take_damage = false
 		$Hitbox/Timer.set_wait_time(Globals.enemies[enemy].cooldown)
 		$Hitbox/Timer.start()
@@ -61,15 +61,16 @@ func hit(damage):
 
 func enemy_death():
 		death.emit("green_mushroom", position)
+		Globals.update_player("defeated_enemies", Globals.player["defeated_enemies"] + 1)
 		queue_free()
 	
 
 
-func _on_hitbox_body_entered(body):
+func _on_hitbox_body_entered(_body):
 	# the player is colliding with the enemy
 	is_colliding_with_player = true
 
-func _on_hitbox_body_exited(body):
+func _on_hitbox_body_exited(_body):
 	# the player is no longer colliding with the enemy
 	is_colliding_with_player = false
 	

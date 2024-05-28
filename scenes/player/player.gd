@@ -22,6 +22,8 @@ func _process(_delta):
 	
 	# update player position
 	Globals.player["position"] = global_position
+#	Globals.update_player("position", global_position)
+	
 	
 	#input
 	var input_direction = Input.get_vector("left", "right", "up", "down")

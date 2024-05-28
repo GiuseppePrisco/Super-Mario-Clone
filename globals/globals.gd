@@ -1,5 +1,7 @@
 extends Node
 
+signal ui_change
+
 # player stats
 var original_player = {
 	"position": Vector2.ZERO,
@@ -8,8 +10,9 @@ var original_player = {
 	"armor": 10,
 	"level": 0,
 	"xp": 0,
-	"xp_needed": 100,
+	"needed_xp": 100,
 	"xp_multiplier": 1.1,
+	"defeated_enemies": 0,	
 }
 var player = original_player.duplicate(true)
 
@@ -73,9 +76,22 @@ var items = {
 		"movement_speed": 100,
 		"acceleration": 100,
 		"duration": 10,
-		"xp": 50,
+		"xp": 20,
 	},
 }
+
+# ui 
+var original_ui = {
+	"game_started": false,
+	"game_paused": false,
+}
+var ui = original_ui.duplicate(true)
+
+
+func update_player(property: String, value) -> void:
+	player[property] = value
+	ui_change.emit()
+#	print(property, value)
 
 
 func reset_xp():
@@ -84,6 +100,6 @@ func reset_xp():
 func reset_game_stats():
 	projectiles = original_projectiles.duplicate(true)
 	player = original_player.duplicate(true)
-	
+	ui = original_ui.duplicate(true)
 
 	

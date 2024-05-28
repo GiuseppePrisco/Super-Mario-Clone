@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://bj3ddmrmbg1fd"]
+[gd_scene load_steps=3 format=3 uid="uid://bj3ddmrmbg1fd"]
 
 [ext_resource type="Script" path="res://scenes/user interface/menu.gd" id="1_026cl"]
+[ext_resource type="PackedScene" uid="uid://dvpywt0totw7t" path="res://scenes/user interface/ui.tscn" id="2_ja23p"]
 
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_026cl")
+
+[node name="UI" parent="." instance=ExtResource("2_ja23p")]
 
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false

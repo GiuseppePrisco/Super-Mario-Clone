@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cv3wtxyuvao6w"]
+[gd_scene load_steps=10 format=3 uid="uid://cv3wtxyuvao6w"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_ffa7i"]
 [ext_resource type="PackedScene" uid="uid://dvd1143ycud8w" path="res://scenes/player/player.tscn" id="2_0p8rr"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://bj3ddmrmbg1fd" path="res://scenes/user interface/menu.tscn" id="5_h52ui"]
 [ext_resource type="PackedScene" uid="uid://bfnut1wm2wk52" path="res://scenes/enemies/koopa.tscn" id="5_jxuke"]
 [ext_resource type="PackedScene" uid="uid://b3fgvoe8c6hwi" path="res://scenes/items/star.tscn" id="6_cud0b"]
-[ext_resource type="PackedScene" uid="uid://bb6jby0tuabex" path="res://scenes/user interface/ui.tscn" id="6_o64tm"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_wo6gj"]
 resource_name = "blocks"
@@ -1035,8 +1034,6 @@ metadata/_edit_lock_ = true
 
 [node name="Menu" parent="." instance=ExtResource("5_h52ui")]
 visible = false
-
-[node name="UI" parent="." instance=ExtResource("6_o64tm")]
 
 [connection signal="fireball_shot" from="Player" to="." method="_on_player_fireball_shot"]
 [connection signal="projectile_shot" from="Player" to="." method="_on_player_projectile_shot"]

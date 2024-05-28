@@ -32,27 +32,31 @@ func _process(delta):
 		position += movement_speed * player_direction * delta
 
 
-func _on_reception_field_body_entered(body):
+func _on_reception_field_body_entered(_body):
 	should_be_collected = true
 
 
-func _on_collision_body_entered(body):
+func _on_collision_body_entered(_body):
 	#TODO insert the behaviour for other items
 	if item == "green_mushroom":
-		Globals.player["xp"] += Globals.items[item].xp
-		var xp = Globals.player["xp"]
-		var xp_needed = Globals.player["xp_needed"]
+		# update player xp
+		Globals.update_player("xp", Globals.player["xp"] + Globals.items[item].xp)
+		var current_xp: int = Globals.player["xp"]
+		var needed_xp: int = Globals.player["needed_xp"]
 		var xp_multiplier = Globals.player["xp_multiplier"]
-		var player_level = Globals.player["level"]
-		var threshold = xp_needed * xp_multiplier ** player_level
 		
-		if xp >= threshold:
-			Globals.player["level"] += 1
-			Globals.reset_xp()
+		# check if player should level up
+		if current_xp >= needed_xp:
+
+#			print("first current xp ", current_xp)
+#			print("first needed_xp ", needed_xp)
 			
-			print("current xp ", xp)
-			print("threshold ", threshold)
-			print("level ", Globals.player["level"])
+			Globals.update_player("level", Globals.player["level"] + 1)
+			Globals.update_player("xp", current_xp % needed_xp)
+			Globals.update_player("needed_xp", round(needed_xp * xp_multiplier))
+			
+#			print("second current xp ", Globals.player["xp"])
+#			print("second needed_xp ", Globals.player["needed_xp"])
 	
 	queue_free()
 
