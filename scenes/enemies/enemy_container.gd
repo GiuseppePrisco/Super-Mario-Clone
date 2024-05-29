@@ -34,7 +34,11 @@ func _process(_delta):
 	move_and_slide()
 	
 	if is_colliding_with_player and should_player_take_damage:
-#		print("player took ", Globals.enemies[enemy].damage, " damage")
+
+		print("health before ", Globals.player["health"])
+		Globals.update_player("health", Globals.player["health"] - Globals.enemies[enemy].damage)
+		print("health after ", Globals.player["health"])
+		
 		should_player_take_damage = false
 		$Hitbox/Timer.set_wait_time(Globals.enemies[enemy].cooldown)
 		$Hitbox/Timer.start()

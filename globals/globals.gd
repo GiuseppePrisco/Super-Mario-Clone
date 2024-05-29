@@ -6,6 +6,7 @@ signal ui_change
 var original_player = {
 	"position": Vector2.ZERO,
 	"movement_speed": 200,
+	"max_health": 200,
 	"health": 200,
 	"armor": 10,
 	"level": 0,

@@ -15,6 +15,7 @@ var player_direction = Vector2.RIGHT
 
 func _ready():
 	position = Vector2(20, 100)
+	Globals.update_player("health", Globals.player["max_health"])
 #	pass
 	
 
@@ -23,8 +24,7 @@ func _process(_delta):
 	# update player position
 	Globals.player["position"] = global_position
 #	Globals.update_player("position", global_position)
-	
-	
+
 	#input
 	var input_direction = Input.get_vector("left", "right", "up", "down")
 	velocity = input_direction * Globals.player["movement_speed"]
@@ -73,7 +73,6 @@ func _process(_delta):
 		
 		
 		
-		
 	for projectile in Globals.projectiles:
 		if Globals.projectiles[projectile].can_be_fired:
 			Globals.projectiles[projectile].can_be_fired = false
@@ -93,8 +92,7 @@ func _process(_delta):
 			timer.start()
 			cooldown_timers[projectile] = timer
 			
-		
-	
+			
 
 func _on_Timer_timeout():
 	for projectile in cooldown_timers.keys():
