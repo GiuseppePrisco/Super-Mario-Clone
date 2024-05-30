@@ -1,6 +1,8 @@
 extends CharacterBody2D
 class_name EnemyContainer
 
+var death_effect_scene: PackedScene = preload("res://scenes/effects/death_effect.tscn")
+
 signal death(item_name, pos)
 
 var enemy: String
@@ -66,6 +68,14 @@ func hit(damage):
 func enemy_death():
 		death.emit("green_mushroom", position)
 		Globals.update_player("defeated_enemies", Globals.player["defeated_enemies"] + 1)
+		
+		# instantiate the death effect as another scene
+#		print(get_parent().get_parent().get_node("Effects").name)
+		var death_effect = death_effect_scene.instantiate()
+		death_effect.global_position = position
+		get_parent().get_parent().get_node("Effects").add_child(death_effect)
+		
+		# delete the enemy
 		queue_free()
 	
 

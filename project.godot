@@ -15,6 +15,10 @@ run/main_scene="res://scenes/levels/level.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
 config/icon="res://icon.svg"
 
+[aseprite_importers]
+
+aseprite_executable_path="C:\\Aseprite\\aseprite\\build\\bin\\aseprite.exe"
+
 [autoload]
 
 Globals="*res://globals/globals.gd"
@@ -26,6 +30,10 @@ window/size/viewport_height=224
 window/size/initial_position_type=2
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg")
 
 [input]
 

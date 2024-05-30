@@ -1022,6 +1022,8 @@ position = Vector2(-61, 143)
 [node name="Bowser" parent="Enemies" instance=ExtResource("4_78j5d")]
 position = Vector2(151, -19)
 
+[node name="Effects" type="Node2D" parent="."]
+
 [node name="Projectiles" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
 
