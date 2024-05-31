@@ -37,6 +37,11 @@ func _on_reception_field_body_entered(_body):
 
 
 func _on_collision_body_entered(_body):
+	
+	# play the sound of the collected item
+	Globals.play_sound_effect(Globals.items[item].collect_sound)
+	
+	
 	#TODO insert the behaviour for other items
 	if item == "green_mushroom":
 		# update player xp
@@ -58,6 +63,7 @@ func _on_collision_body_entered(_body):
 #			print("second current xp ", Globals.player["xp"])
 #			print("second needed_xp ", Globals.player["needed_xp"])
 	
+	# delete the item
 	queue_free()
 
 

@@ -78,6 +78,7 @@ var items = {
 		"acceleration": 100,
 		"duration": 10,
 		"xp": 20,
+		"collect_sound": load("res://assets/sounds/items/mushroom.wav"),
 	},
 }
 
@@ -87,6 +88,12 @@ var original_ui = {
 	"game_paused": false,
 }
 var ui = original_ui.duplicate(true)
+
+
+func _ready():
+	# set the volume of the master bus to a maximum level
+	var max_volume_db = -40
+	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), max_volume_db)
 
 
 func update_player(property: String, value) -> void:
@@ -104,3 +111,13 @@ func reset_game_stats():
 	ui = original_ui.duplicate(true)
 
 	
+func play_sound_effect(effect):
+	var audio_stream_player = AudioStreamPlayer2D.new()
+	audio_stream_player.stream = effect
+	add_child(audio_stream_player)
+	audio_stream_player.play()
+	
+	# wait for the effect to finish
+	await audio_stream_player.finished
+	remove_child(audio_stream_player)
+	audio_stream_player.queue_free()
