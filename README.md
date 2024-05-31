@@ -9,8 +9,8 @@ This is the Project developed for my training at Leonardo S.p.A.
 
 ## 📚 Project brief Description
 
-    The project is being developed on the Godot Engine, using its native programming language, GDScript.
-    It is inspired by the popular game "Vampire Survivors" in which the user controls a player and needs to defeat many enemies in order to survive and level up the character.
+   The project is being developed on the Godot Engine, using its native programming language, GDScript.
+   It is inspired by the popular game "Vampire Survivors" in which the user controls a player and needs to defeat many enemies in order to survive and level up the character.
 
 
 ## 🎮 Play the game
