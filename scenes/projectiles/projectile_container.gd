@@ -12,6 +12,10 @@ var rotation_speed: int
 func setup(projectile_name):
 	projectile = projectile_name
 	remaining_pierce = Globals.projectiles[projectile].pierce
+	
+	# TODO change this to a function that is used to handle just the projectile sounds
+	SoundManager.play_item_collected_sound_effect(Globals.projectiles[projectile].sound)
+	
 	$Timer.set_wait_time(Globals.projectiles[projectile].duration)
 	$Timer.start()
 

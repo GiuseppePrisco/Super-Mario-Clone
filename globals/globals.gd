@@ -27,8 +27,9 @@ var original_projectiles = {
 		"damage": 10,
 		"duration": 5,
 		"pierce": 1,
-		"cooldown": 1,
+		"cooldown": 0.5,
 		"can_be_fired": true,
+		"sound": load("res://assets/sounds/projectiles/fireball.wav"),
 	},
 	"mushroom": {
 		"movement_speed": 300,
@@ -39,6 +40,7 @@ var original_projectiles = {
 		"pierce": 2,
 		"cooldown": 1,
 		"can_be_fired": true,
+		"sound": load("res://assets/sounds/items/coin.wav"),
 	},
 }
 var projectiles = original_projectiles.duplicate(true)
@@ -72,6 +74,7 @@ var items = {
 		"movement_speed": 50,
 		"acceleration": 100,
 		"duration": 10,
+		"collect_sound": load("res://assets/sounds/items/coin.wav"),
 	},
 	"green_mushroom": {
 		"movement_speed": 100,
@@ -92,8 +95,9 @@ var ui = original_ui.duplicate(true)
 
 func _ready():
 	# set the volume of the master bus to a maximum level
-	var max_volume_db = -40
-	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), max_volume_db)
+#	var max_volume_db = -40
+#	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), max_volume_db)
+	pass
 
 
 func update_player(property: String, value) -> void:
@@ -109,6 +113,10 @@ func reset_game_stats():
 	projectiles = original_projectiles.duplicate(true)
 	player = original_player.duplicate(true)
 	ui = original_ui.duplicate(true)
+	
+	# stop all audio streams
+	for audio_stream in SoundManager.get_children():
+		audio_stream.stop()
 
 	
 func play_sound_effect(effect):

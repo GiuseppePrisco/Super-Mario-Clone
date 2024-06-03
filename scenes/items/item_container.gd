@@ -39,7 +39,10 @@ func _on_reception_field_body_entered(_body):
 func _on_collision_body_entered(_body):
 	
 	# play the sound of the collected item
-	Globals.play_sound_effect(Globals.items[item].collect_sound)
+#	Globals.play_sound_effect(Globals.items[item].collect_sound)
+	
+	SoundManager.play_item_collected_sound_effect(Globals.items[item].collect_sound)
+#	SoundManager.play_item_collected_sound_effect(Globals.items["star"].collect_sound)
 	
 	
 	#TODO insert the behaviour for other items
