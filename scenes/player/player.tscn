@@ -3,8 +3,9 @@
 [ext_resource type="Script" path="res://scenes/player/player.gd" id="1_32uo1"]
 [ext_resource type="Texture2D" uid="uid://dkkfmtvxm2v0" path="res://mario_and_items.png" id="1_wc2wu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0re8f"]
-size = Vector2(18, 34)
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q12r7"]
+radius = 9.0
+height = 34.0
 
 [sub_resource type="Gradient" id="Gradient_yelm0"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 0.129412, 0.129412, 0.65098)
@@ -27,7 +28,7 @@ collision_mask = 20
 script = ExtResource("1_32uo1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_0re8f")
+shape = SubResource("CapsuleShape2D_q12r7")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(1, 1)
@@ -59,7 +60,6 @@ lifetime = 0.05
 one_shot = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-drag_bottom_margin = 0.0
 metadata/_edit_lock_ = true
 
 [connection signal="fireball_shot" from="." to="." method="_on_fireball_shot"]

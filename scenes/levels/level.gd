@@ -55,7 +55,6 @@ func spawn_enemy():
 
 
 
-
 #TODO, WHEN THE GENERIC PROJECTILE SIGNAL FUNCTION IS COMPLETED, DELETE THIS SIGNAL
 func _on_player_fireball_shot(pos, direction):
 	var fireball = fireball_scene.instantiate()

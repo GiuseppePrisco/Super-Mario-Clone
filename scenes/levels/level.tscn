@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cv3wtxyuvao6w"]
+[gd_scene load_steps=11 format=3 uid="uid://cv3wtxyuvao6w"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_ffa7i"]
 [ext_resource type="PackedScene" uid="uid://dvd1143ycud8w" path="res://scenes/player/player.tscn" id="2_0p8rr"]
@@ -990,8 +990,11 @@ physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_wo6gj")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ioa1u"]
+size = Vector2(1066, 668)
+
 [node name="Level" type="Node2D"]
-position = Vector2(-125, 57)
+position = Vector2(93, 181)
 script = ExtResource("1_ffa7i")
 
 [node name="Ground" type="Node2D" parent="."]
@@ -1029,6 +1032,13 @@ metadata/_edit_lock_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_0p8rr")]
 metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="Player"]
+collision_layer = 16
+collision_mask = 2
+
+[node name="Spawn Area" type="CollisionShape2D" parent="Player/Area2D"]
+shape = SubResource("RectangleShape2D_ioa1u")
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.2

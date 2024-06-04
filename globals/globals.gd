@@ -6,6 +6,7 @@ signal game_over
 # player stats
 var original_player = {
 	"position": Vector2.ZERO,
+	"direction": Vector2.RIGHT,
 	"movement_speed": 200,
 	"max_health": 200,
 	"health": 200,

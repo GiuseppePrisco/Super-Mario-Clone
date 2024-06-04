@@ -6,9 +6,6 @@
 [node name="Menu" type="CanvasLayer"]
 script = ExtResource("1_026cl")
 
-[node name="UI" parent="." instance=ExtResource("2_ja23p")]
-visible = false
-
 [node name="ColorRect" type="ColorRect" parent="."]
 visible = false
 anchors_preset = 15
@@ -101,7 +98,6 @@ layout_mode = 2
 text = "Home"
 
 [node name="GameNotPaused" type="HBoxContainer" parent="."]
-visible = false
 anchors_preset = -1
 anchor_left = 1.0
 anchor_top = 0.1
@@ -114,6 +110,9 @@ grow_horizontal = 0
 [node name="PauseButton" type="Button" parent="GameNotPaused"]
 layout_mode = 2
 text = "Pause"
+
+[node name="UI" parent="GameNotPaused" instance=ExtResource("2_ja23p")]
+visible = false
 
 [connection signal="pressed" from="ColorRect/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="value_changed" from="GamePaused/VBoxContainer/VBoxContainer/Music Slider" to="." method="_on_music_slider_value_changed"]

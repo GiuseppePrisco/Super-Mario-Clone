@@ -27,8 +27,8 @@ Options="*res://globals/options.gd"
 
 [display]
 
-window/size/viewport_width=256
-window/size/viewport_height=224
+window/size/viewport_width=640
+window/size/viewport_height=480
 window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"

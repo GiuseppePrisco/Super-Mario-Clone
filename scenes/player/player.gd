@@ -10,35 +10,37 @@ signal projectile_shot(projectile_name, pos, direction)
 
 var cooldown_timers = {}
 
-var player_direction = Vector2.RIGHT
+#var player_direction = Vector2.RIGHT
 
 
 func _ready():
 	position = Vector2(20, 100)
 	Globals.update_player("health", Globals.player["max_health"])
-#	pass
 	
 
-func _process(_delta):
+func _physics_process(_delta):
 	
 	# update player position
 	Globals.player["position"] = global_position
 #	Globals.update_player("position", global_position)
 
 	#input
-	var input_direction = Input.get_vector("left", "right", "up", "down")
+	var input_direction = Input.get_vector("left", "right", "up", "down").normalized()
+	
 	velocity = input_direction * Globals.player["movement_speed"]
 	move_and_slide()
 	
 	
 	# rotate the character sprite
-	if input_direction.x > 0 and player_direction != Vector2.RIGHT:
-		player_direction = Vector2.RIGHT
-		scale.x = -scale.x
+	if input_direction.x > 0 and Globals.player["direction"] != Vector2.RIGHT:
+		Globals.player["direction"] = Vector2.RIGHT
+#		scale.x = -scale.x
+		$Sprite2D.flip_h = !$Sprite2D.flip_h
 	
-	if input_direction.x < 0 and player_direction != Vector2.LEFT:
-		player_direction = Vector2.LEFT
-		scale.x = -scale.x
+	if input_direction.x < 0 and Globals.player["direction"] != Vector2.LEFT:
+		Globals.player["direction"] = Vector2.LEFT
+#		scale.x = -scale.x
+		$Sprite2D.flip_h = !$Sprite2D.flip_h
 	
 	
 #	print("position", position)
@@ -58,7 +60,7 @@ func _process(_delta):
 		can_fireball = false
 		var fireball_markers = $FireballPositions.get_children()
 		var selected_fireball = fireball_markers[randi() % fireball_markers.size()]
-		fireball_shot.emit(selected_fireball.global_position, player_direction)
+		fireball_shot.emit(selected_fireball.global_position, Globals.player["direction"])
 #		fireball_shot.emit(selected_fireball.position, player_direction)		
 		$GPUParticles2D.emitting = true
 		
@@ -76,7 +78,7 @@ func _process(_delta):
 	for projectile in Globals.projectiles:
 		if Globals.projectiles[projectile].can_be_fired:
 			Globals.projectiles[projectile].can_be_fired = false
-			projectile_shot.emit(projectile, position, player_direction)
+			projectile_shot.emit(projectile, position, Globals.player["direction"])
 			
 			# create a timer for each projectile
 			var timer = Timer.new()
