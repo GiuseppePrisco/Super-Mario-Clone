@@ -1,6 +1,7 @@
 extends Node
 
 signal ui_change
+signal game_over
 
 # player stats
 var original_player = {
@@ -13,7 +14,7 @@ var original_player = {
 	"xp": 0,
 	"needed_xp": 100,
 	"xp_multiplier": 1.1,
-	"defeated_enemies": 0,	
+	"defeated_enemies": 0,
 }
 var player = original_player.duplicate(true)
 
@@ -30,6 +31,7 @@ var original_projectiles = {
 		"cooldown": 0.5,
 		"can_be_fired": true,
 		"sound": load("res://assets/sounds/projectiles/fireball.wav"),
+		"volume": 0.3,
 	},
 	"mushroom": {
 		"movement_speed": 300,
@@ -41,6 +43,7 @@ var original_projectiles = {
 		"cooldown": 1,
 		"can_be_fired": true,
 		"sound": load("res://assets/sounds/items/coin.wav"),
+		"volume": 0.3,
 	},
 }
 var projectiles = original_projectiles.duplicate(true)
@@ -57,14 +60,14 @@ var enemies = {
 	"bowser": {
 		"movement_speed": 10,
 		"health": 100,
-		"damage": 50,
+		"damage": 100,
 		"cooldown": 3,
 	},
 	"koopa": {
 		"movement_speed": 35,
 		"health": 25,
 		"damage": 25,
-		"cooldown": 2,
+		"cooldown": 1.5,
 	},
 }
 
@@ -75,6 +78,7 @@ var items = {
 		"acceleration": 100,
 		"duration": 10,
 		"collect_sound": load("res://assets/sounds/items/coin.wav"),
+		"collect_volume": 0.3,
 	},
 	"green_mushroom": {
 		"movement_speed": 100,
@@ -82,6 +86,7 @@ var items = {
 		"duration": 10,
 		"xp": 20,
 		"collect_sound": load("res://assets/sounds/items/mushroom.wav"),
+		"collect_volume": 0.2,
 	},
 }
 
@@ -92,40 +97,44 @@ var original_ui = {
 }
 var ui = original_ui.duplicate(true)
 
+var music_files = {
+	"background": {
+		"music": load("res://assets/sounds/music/background.mp3"),
+		"volume": 0.3,
+	},
+	"game_over": {
+		"music": load("res://assets/sounds/music/game_over.wav"),
+		"volume": 1,
+	},
+}
 
-func _ready():
-	# set the volume of the master bus to a maximum level
-#	var max_volume_db = -40
-#	AudioServer.set_bus_volume_db(AudioServer.get_bus_index("Master"), max_volume_db)
-	pass
+var sound_effects_files = {
+	"menu_pause": {
+		"sound": load("res://assets/sounds/menu/pause.wav"),
+		"volume": 0.2,
+	},
+	"level_up": {
+		"sound": load("res://assets/sounds/menu/level_up.wav"),
+		"volume": 0.2,
+	}
+}
 
 
 func update_player(property: String, value) -> void:
 	player[property] = value
 	ui_change.emit()
-#	print(property, value)
+	
+	# check if the player should be dead
+	if Globals.player["health"] <= 0:
+		game_over.emit()
 
-
-func reset_xp():
-	player["xp"] = 0
 
 func reset_game_stats():
 	projectiles = original_projectiles.duplicate(true)
 	player = original_player.duplicate(true)
-	ui = original_ui.duplicate(true)
+#	ui = original_ui.duplicate(true)
 	
 	# stop all audio streams
 	for audio_stream in SoundManager.get_children():
 		audio_stream.stop()
 
-	
-func play_sound_effect(effect):
-	var audio_stream_player = AudioStreamPlayer2D.new()
-	audio_stream_player.stream = effect
-	add_child(audio_stream_player)
-	audio_stream_player.play()
-	
-	# wait for the effect to finish
-	await audio_stream_player.finished
-	remove_child(audio_stream_player)
-	audio_stream_player.queue_free()

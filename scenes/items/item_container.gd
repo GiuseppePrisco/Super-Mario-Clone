@@ -39,9 +39,9 @@ func _on_reception_field_body_entered(_body):
 func _on_collision_body_entered(_body):
 	
 	# play the sound of the collected item
-#	Globals.play_sound_effect(Globals.items[item].collect_sound)
-	
-	SoundManager.play_item_collected_sound_effect(Globals.items[item].collect_sound)
+	var collect_sound = Globals.items[item].collect_sound
+	var collect_volume = Globals.items[item].collect_volume
+	SoundManager.play_item_collected_sound_effect(collect_sound, collect_volume)
 #	SoundManager.play_item_collected_sound_effect(Globals.items["star"].collect_sound)
 	
 	
@@ -59,9 +59,15 @@ func _on_collision_body_entered(_body):
 #			print("first current xp ", current_xp)
 #			print("first needed_xp ", needed_xp)
 			
+			# the player levels up
 			Globals.update_player("level", Globals.player["level"] + 1)
 			Globals.update_player("xp", current_xp % needed_xp)
 			Globals.update_player("needed_xp", round(needed_xp * xp_multiplier))
+			
+			var effect = "level_up"
+			var sound = Globals.sound_effects_files[effect].sound
+			var volume = Globals.sound_effects_files[effect].volume
+			SoundManager.play_menu_sound_effect(sound, volume)
 			
 #			print("second current xp ", Globals.player["xp"])
 #			print("second needed_xp ", Globals.player["needed_xp"])

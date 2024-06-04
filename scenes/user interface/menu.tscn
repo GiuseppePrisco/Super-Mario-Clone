@@ -53,6 +53,13 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Game Over Label" type="Label" parent="GamePaused/VBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_font_sizes/font_size = 22
+text = "Game Over!"
+horizontal_alignment = 1
+
 [node name="VBoxContainer" type="VBoxContainer" parent="GamePaused/VBoxContainer"]
 layout_mode = 2
 
@@ -62,9 +69,8 @@ text = "Music volume"
 
 [node name="Music Slider" type="HSlider" parent="GamePaused/VBoxContainer/VBoxContainer"]
 layout_mode = 2
-min_value = -80.0
-max_value = 0.0
-allow_lesser = true
+max_value = 1.0
+step = 0.01
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="GamePaused/VBoxContainer"]
 layout_mode = 2
@@ -75,8 +81,8 @@ text = "SFX volume"
 
 [node name="SFX Slider" type="HSlider" parent="GamePaused/VBoxContainer/VBoxContainer2"]
 layout_mode = 2
-min_value = -80.0
-max_value = 0.0
+max_value = 1.0
+step = 0.01
 
 [node name="HBoxContainer" type="HBoxContainer" parent="GamePaused/VBoxContainer"]
 layout_mode = 2
@@ -85,27 +91,34 @@ layout_mode = 2
 layout_mode = 2
 text = "Resume"
 
+[node name="RestartButton" type="Button" parent="GamePaused/VBoxContainer/HBoxContainer"]
+visible = false
+layout_mode = 2
+text = "Restart"
+
 [node name="HomeButton" type="Button" parent="GamePaused/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Home"
 
 [node name="GameNotPaused" type="HBoxContainer" parent="."]
 visible = false
-anchors_preset = 1
+anchors_preset = -1
 anchor_left = 1.0
+anchor_top = 0.1
 anchor_right = 1.0
+anchor_bottom = 0.1
 offset_left = -55.0
 offset_bottom = 40.0
 grow_horizontal = 0
 
 [node name="PauseButton" type="Button" parent="GameNotPaused"]
 layout_mode = 2
-action_mode = 0
 text = "Pause"
 
 [connection signal="pressed" from="ColorRect/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="value_changed" from="GamePaused/VBoxContainer/VBoxContainer/Music Slider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="GamePaused/VBoxContainer/VBoxContainer2/SFX Slider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="pressed" from="GamePaused/VBoxContainer/HBoxContainer/ResumeButton" to="." method="_on_resume_button_pressed"]
+[connection signal="pressed" from="GamePaused/VBoxContainer/HBoxContainer/RestartButton" to="." method="_on_restart_button_pressed"]
 [connection signal="pressed" from="GamePaused/VBoxContainer/HBoxContainer/HomeButton" to="." method="_on_home_button_pressed"]
 [connection signal="pressed" from="GameNotPaused/PauseButton" to="." method="_on_pause_button_pressed"]

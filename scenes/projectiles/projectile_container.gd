@@ -13,8 +13,9 @@ func setup(projectile_name):
 	projectile = projectile_name
 	remaining_pierce = Globals.projectiles[projectile].pierce
 	
-	# TODO change this to a function that is used to handle just the projectile sounds
-	SoundManager.play_item_collected_sound_effect(Globals.projectiles[projectile].sound)
+	var sound = Globals.projectiles[projectile].sound
+	var volume = Globals.projectiles[projectile].volume
+	SoundManager.play_projectile_sound_effect(sound, volume)
 	
 	$Timer.set_wait_time(Globals.projectiles[projectile].duration)
 	$Timer.start()

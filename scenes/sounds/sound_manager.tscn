@@ -1,17 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://bg6blkwwrspdr"]
+[gd_scene load_steps=3 format=3 uid="uid://bg6blkwwrspdr"]
 
 [ext_resource type="Script" path="res://scenes/sounds/sound_manager.gd" id="1_6hbd6"]
-[ext_resource type="AudioStream" uid="uid://ch1idontue7w1" path="res://assets/sounds/items/mushroom.wav" id="1_vtr6u"]
 [ext_resource type="AudioStream" uid="uid://tmef68kk8qma" path="res://assets/sounds/music/background.mp3" id="3_7u5af"]
 
 [node name="SoundManager" type="Node2D"]
 script = ExtResource("1_6hbd6")
 
-[node name="ItemCollected" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("1_vtr6u")
-bus = &"SFX"
-
 [node name="Music" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("3_7u5af")
 bus = &"Music"
+
+[node name="ItemCollected" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="Projectile" type="AudioStreamPlayer" parent="."]
+bus = &"SFX"
+
+[node name="Menu" type="AudioStreamPlayer" parent="."]

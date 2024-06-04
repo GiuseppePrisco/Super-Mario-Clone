@@ -1020,7 +1020,7 @@ position = Vector2(-49, -92)
 position = Vector2(-61, 143)
 
 [node name="Bowser" parent="Enemies" instance=ExtResource("4_78j5d")]
-position = Vector2(151, -19)
+position = Vector2(217, -21)
 
 [node name="Effects" type="Node2D" parent="."]
 

@@ -9,6 +9,8 @@ var projectile_scenes = {
 
 var enemy_scenes = {
 	"goomba": preload("res://scenes/enemies/goomba.tscn"),
+	"bowser": preload("res://scenes/enemies/bowser.tscn"),
+	"koopa": preload("res://scenes/enemies/koopa.tscn"),
 }
 
 var item_scenes = {
