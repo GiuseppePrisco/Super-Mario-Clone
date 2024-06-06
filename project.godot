@@ -29,13 +29,8 @@ Options="*res://globals/options.gd"
 
 window/size/viewport_width=640
 window/size/viewport_height=480
-window/size/mode=2
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/nklbdev.aseprite_importers/plugin.cfg")
 
 [input]
 

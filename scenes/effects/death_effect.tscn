@@ -1,21 +1,20 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7c70ufbtc0mt"]
 
-[ext_resource type="Texture2D" uid="uid://p5qqxwlbevjb" path="res://sprites/explosion-Sheet.aseprite" id="1_u26u7"]
+[ext_resource type="Texture2D" uid="uid://c8nwctcs5x2tk" path="res://assets/sprites/explosion.png" id="1_uplsk"]
 
-[sub_resource type="Animation" id="Animation_nj4yk"]
-resource_name = "DeathEffect"
-step = 0.0714
+[sub_resource type="Animation" id="Animation_fg0vj"]
+resource_name = "explosion"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0714, 0.1428, 0.2142, 0.2856, 0.357, 0.4284, 0.4998, 0.5712, 0.6426, 0.714, 0.7854, 0.8568, 0.9282),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-"update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -24,7 +23,7 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.9996),
+"times": PackedFloat32Array(1),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -32,35 +31,35 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_bnp13"]
+[sub_resource type="Animation" id="Animation_fdawg"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/path = NodePath("Sprite2D:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_l68vu"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xnvd6"]
 _data = {
-"DeathEffect": SubResource("Animation_nj4yk"),
-"RESET": SubResource("Animation_bnp13")
+"RESET": SubResource("Animation_fdawg"),
+"explosion": SubResource("Animation_fg0vj")
 }
 
 [node name="DeathEffect" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("1_u26u7")
-hframes = 14
+scale = Vector2(0.03, 0.03)
+texture = ExtResource("1_uplsk")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "DeathEffect"
+autoplay = "explosion"
 libraries = {
-"": SubResource("AnimationLibrary_l68vu")
+"": SubResource("AnimationLibrary_xnvd6")
 }

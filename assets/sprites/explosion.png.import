@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bbww6j66bavar"
-path="res://.godot/imported/icon.png-fcba8a3700fb5af89c995132142de0f4.ctex"
+uid="uid://c8nwctcs5x2tk"
+path="res://.godot/imported/explosion.png-9cc5a79bdd01a0eeac6b161c8d594f1f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/nklbdev.aseprite_importers/icon.png"
-dest_files=["res://.godot/imported/icon.png-fcba8a3700fb5af89c995132142de0f4.ctex"]
+source_file="res://assets/sprites/explosion.png"
+dest_files=["res://.godot/imported/explosion.png-9cc5a79bdd01a0eeac6b161c8d594f1f.ctex"]
 
 [params]
 
