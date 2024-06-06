@@ -3,15 +3,29 @@ class_name ProjectileContainer
 
 var projectile: String
 
-var remaining_pierce: int
 var movement_speed: int
-var direction: Vector2 = Vector2.UP
+var direction: Vector2
+var radius
 var rotation_speed: int
+var rotation_direction: int = 1
+var remaining_pierce: int
+var rotation_angle = 0
+
+# TODO use this for stationary projectiles
+var original_position: Vector2
 
 
 func setup(projectile_name):
 	projectile = projectile_name
 	remaining_pierce = Globals.projectiles[projectile].pierce
+	
+	# TODO use this for stationary projectiles
+	original_position = position
+	
+	if projectile == "fireball":
+		if Globals.player["direction"].x < 0:
+			$Sprite2D.flip_h = true
+			rotation_direction = -rotation_direction
 	
 	var sound = Globals.projectiles[projectile].sound
 	var volume = Globals.projectiles[projectile].volume
@@ -28,9 +42,16 @@ func _process(delta):
 	
 	if projectile == "mushroom":
 		direction = Globals.projectiles[projectile].direction
-	
-	position += direction * movement_speed * delta
-	rotation += rotation_speed * delta
+		
+	if projectile == "blue_mushroom":
+		radius = Globals.projectiles[projectile].radius
+		rotation_angle += deg_to_rad(rotation_speed) * delta
+
+		position = Globals.player["local_position"] + Vector2(radius, 0).rotated(rotation_angle)
+		
+	else:
+		position += direction * movement_speed * delta
+		rotation += rotation_speed * rotation_direction * delta
 
 
 func _on_body_entered(body):
@@ -41,7 +62,7 @@ func _on_body_entered(body):
 	
 		# reduce the pierce of the projectile
 		remaining_pierce -= 1
-		if remaining_pierce <= 0:
+		if remaining_pierce <= 0 :
 			# delete the projectile
 			queue_free()
 	

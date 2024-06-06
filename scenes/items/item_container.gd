@@ -24,7 +24,7 @@ func setup(item_name):
 	$Timer.start()
 	
 	
-func _process(delta):
+func _physics_process(delta):
 	
 	if should_be_collected:
 		var player_direction = (Globals.player["position"] - global_position).normalized()

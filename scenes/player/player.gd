@@ -22,6 +22,8 @@ func _physics_process(_delta):
 	
 	# update player position
 	Globals.player["position"] = global_position
+	Globals.player["local_position"] = position
+	
 #	Globals.update_player("position", global_position)
 
 	#input

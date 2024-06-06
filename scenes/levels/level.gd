@@ -5,6 +5,7 @@ var fireball_scene: PackedScene = preload("res://scenes/projectiles/fireball.tsc
 var projectile_scenes = {
 	"fireball": preload("res://scenes/projectiles/fireball.tscn"),
 	"mushroom": preload("res://scenes/projectiles/mushroom.tscn"),
+	"blue_mushroom": preload("res://scenes/projectiles/blue_mushroom.tscn"),
 }
 
 var enemy_scenes = {
@@ -22,7 +23,7 @@ var enemy_spawn_positions: Array
 var enemy_spawn_positions_max_distance: int = 200
 
 const MAX_POSITION_NUM: int = 10
-const MAX_ENEMY_COUNT: int = 20
+const MAX_ENEMY_COUNT: int = 30
 
 
 
@@ -72,10 +73,11 @@ func _on_player_fireball_shot(pos, direction):
 func _on_player_projectile_shot(projectile_name, pos, direction):
 	var projectile = projectile_scenes[projectile_name].instantiate()
 	projectile.position = pos
-	projectile.rotation = direction.angle()
+#	projectile.rotation = direction.angle()
 	projectile.direction = direction
 	$Projectiles.add_child(projectile)
 #	print(projectile)
+#	print(projectile_name, " scale ", projectile.scale)
 
 
 func _on_enemy_death(item_name, pos):
