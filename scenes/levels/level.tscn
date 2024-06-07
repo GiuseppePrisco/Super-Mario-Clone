@@ -991,7 +991,7 @@ physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_wo6gj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ioa1u"]
-size = Vector2(680, 518)
+size = Vector2(1204, 896)
 
 [node name="Level" type="Node2D"]
 position = Vector2(93, 181)
@@ -1035,11 +1035,11 @@ position = Vector2(-49, -92)
 [node name="Player" parent="." instance=ExtResource("2_0p8rr")]
 metadata/_edit_lock_ = true
 
-[node name="Area2D" type="Area2D" parent="Player"]
+[node name="Spawn Area" type="Area2D" parent="Player"]
 collision_layer = 16
 collision_mask = 2
 
-[node name="Spawn Area" type="CollisionShape2D" parent="Player/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/Spawn Area"]
 shape = SubResource("RectangleShape2D_ioa1u")
 metadata/_edit_lock_ = true
 
@@ -1052,3 +1052,4 @@ visible = false
 
 [connection signal="fireball_shot" from="Player" to="." method="_on_player_fireball_shot"]
 [connection signal="projectile_shot" from="Player" to="." method="_on_player_projectile_shot"]
+[connection signal="body_exited" from="Player/Spawn Area" to="." method="_on_spawn_area_body_exited"]

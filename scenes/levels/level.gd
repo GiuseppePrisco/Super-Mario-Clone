@@ -26,8 +26,6 @@ var enemy_spawn_positions_max_distance: int = 400
 const MAX_POSITION_NUM: int = 10
 const MAX_ENEMY_COUNT: int = 30
 
-
-
 func _ready():
 	$Menu.show()
 	enemy_spawn_positions = get_enemy_spawn_positions(MAX_POSITION_NUM)
@@ -85,3 +83,8 @@ func _on_enemy_death(item_name, pos):
 	var item = item_scenes[item_name].instantiate()
 	item.position = pos
 	$Items.call_deferred("add_child", item)
+
+
+func _on_spawn_area_body_exited(body):
+	# if an enemy exits the maximum area, it is moved into a new legal position
+	body.position = enemy_spawn_positions.pick_random() * enemy_spawn_positions_max_distance + $Player.position
