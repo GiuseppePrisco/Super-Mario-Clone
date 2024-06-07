@@ -991,7 +991,7 @@ physics_layer_0/collision_mask = 11
 sources/0 = SubResource("TileSetAtlasSource_wo6gj")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ioa1u"]
-size = Vector2(1066, 668)
+size = Vector2(680, 518)
 
 [node name="Level" type="Node2D"]
 position = Vector2(93, 181)
@@ -1012,23 +1012,25 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(458746, 0, 0, -131067, 0, 0, -65531, 0, 0, 5, 0, 0, 65541, 0, 0, 131077, 0, 0, 196613, 0, 0, 262149, 0, 0, 393221, 0, 0, 327685, 0, 0, -65542, 0, 0, -6, 0, 0, 65530, 0, 0, 131066, 0, 0, 196602, 0, 0, 262138, 0, 0, 327674, 0, 0, 393210, 0, 0)
 
-[node name="Items" type="Node2D" parent="."]
-
-[node name="Star" parent="Items" instance=ExtResource("6_cud0b")]
-position = Vector2(-49, -92)
-
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Koopa" parent="Enemies" instance=ExtResource("5_jxuke")]
 position = Vector2(-61, 143)
+collision_mask = 10
 
 [node name="Bowser" parent="Enemies" instance=ExtResource("4_78j5d")]
 position = Vector2(217, -21)
+collision_mask = 10
 
 [node name="Effects" type="Node2D" parent="."]
 
 [node name="Projectiles" type="Node2D" parent="."]
 metadata/_edit_lock_ = true
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Star" parent="Items" instance=ExtResource("6_cud0b")]
+position = Vector2(-49, -92)
 
 [node name="Player" parent="." instance=ExtResource("2_0p8rr")]
 metadata/_edit_lock_ = true
@@ -1039,6 +1041,7 @@ collision_mask = 2
 
 [node name="Spawn Area" type="CollisionShape2D" parent="Player/Area2D"]
 shape = SubResource("RectangleShape2D_ioa1u")
+metadata/_edit_lock_ = true
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 energy = 0.2

@@ -15,6 +15,7 @@ var rotation_threshold = 10
 var is_colliding_with_player: bool = false
 var should_player_take_damage: bool = true
 
+var damaging_projectiles: Dictionary = {}
 
 func setup(enemy_name):
 	enemy = enemy_name
@@ -42,10 +43,8 @@ func _process(_delta):
 		print("health after ", Globals.player["health"])
 		
 		should_player_take_damage = false
-		$Hitbox/Timer.set_wait_time(Globals.enemies[enemy].cooldown)
-		$Hitbox/Timer.start()
-	
-	
+		$"Hitbox/Hitbox Timer".set_wait_time(Globals.enemies[enemy].cooldown)
+		$"Hitbox/Hitbox Timer".start()
 	
 	
 func should_rotate() -> bool:
@@ -70,7 +69,6 @@ func enemy_death():
 		Globals.update_player("defeated_enemies", Globals.player["defeated_enemies"] + 1)
 		
 		# instantiate the death effect as another scene
-#		print(get_parent().get_parent().get_node("Effects").name)
 		var death_effect = death_effect_scene.instantiate()
 		death_effect.global_position = position
 		get_parent().get_parent().get_node("Effects").add_child(death_effect)
@@ -88,9 +86,7 @@ func _on_hitbox_body_exited(_body):
 	# the player is no longer colliding with the enemy
 	is_colliding_with_player = false
 	
-func _on_timer_timeout():
+func _on_hitbox_timer_timeout():
 	# the player should take damage once again
 	should_player_take_damage = true
-
-
 

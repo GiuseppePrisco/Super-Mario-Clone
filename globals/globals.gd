@@ -62,6 +62,19 @@ var original_projectiles = {
 		"sound": load("res://assets/sounds/items/coin.wav"),
 		"volume": 0.3,
 	},
+	"fire_flower": {
+		"movement_speed": 0,
+		"direction": Vector2.UP,
+		"radius": 200,
+		"rotation_speed": 0,
+		"damage": 25,
+		"duration": 4,
+		"pierce": 9999999999,
+		"cooldown": 5,
+		"can_be_fired": true,
+		"sound": load("res://assets/sounds/items/coin.wav"),
+		"volume": 0.3,
+	},
 }
 var projectiles = original_projectiles.duplicate(true)
 

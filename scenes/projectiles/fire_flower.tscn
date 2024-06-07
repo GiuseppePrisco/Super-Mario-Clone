@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://cp35cmccw6sg7"]
+
+[ext_resource type="PackedScene" uid="uid://dfrychr3kuydw" path="res://scenes/projectiles/projectile_container.tscn" id="1_n1go8"]
+[ext_resource type="Script" path="res://scenes/projectiles/fire_flower.gd" id="2_3i2cc"]
+[ext_resource type="Texture2D" uid="uid://dkkfmtvxm2v0" path="res://mario_and_items.png" id="2_4xg3j"]
+[ext_resource type="Texture2D" uid="uid://djg2rnh0hf4ri" path="res://assets/sprites/fire_circle.png" id="4_rynea"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vs28g"]
+radius = 38.0526
+
+[sub_resource type="Animation" id="Animation_3g5kr"]
+resource_name = "fire_circle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fire Circle:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.498039, 1, 1), Color(1, 1, 0, 1), Color(1, 0.498039, 0, 1), Color(1, 1, 0, 1), Color(1, 0.498039, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_fy7k1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Fire Circle:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.498039, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cpuv0"]
+_data = {
+"RESET": SubResource("Animation_fy7k1"),
+"fire_circle": SubResource("Animation_3g5kr")
+}
+
+[node name="Fire Flower" instance=ExtResource("1_n1go8")]
+script = ExtResource("2_3i2cc")
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(1, 0)
+texture = ExtResource("2_4xg3j")
+region_enabled = true
+region_rect = Rect2(17.6729, 108.323, 18.3778, 18.3777)
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_vs28g")
+
+[node name="Fire Circle" type="Sprite2D" parent="." index="3"]
+self_modulate = Color(1, 0.498039, 1, 1)
+position = Vector2(-1, 0)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("4_rynea")
+
+[node name="Fire Circle animation" type="AnimationPlayer" parent="." index="4"]
+autoplay = "fire_circle"
+libraries = {
+"": SubResource("AnimationLibrary_cpuv0")
+}

@@ -6,6 +6,7 @@ var projectile_scenes = {
 	"fireball": preload("res://scenes/projectiles/fireball.tscn"),
 	"mushroom": preload("res://scenes/projectiles/mushroom.tscn"),
 	"blue_mushroom": preload("res://scenes/projectiles/blue_mushroom.tscn"),
+	"fire_flower": preload("res://scenes/projectiles/fire_flower.tscn"),
 }
 
 var enemy_scenes = {
@@ -20,7 +21,7 @@ var item_scenes = {
 }
 
 var enemy_spawn_positions: Array
-var enemy_spawn_positions_max_distance: int = 200
+var enemy_spawn_positions_max_distance: int = 400
 
 const MAX_POSITION_NUM: int = 10
 const MAX_ENEMY_COUNT: int = 30

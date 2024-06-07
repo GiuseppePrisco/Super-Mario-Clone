@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cv7052hlo24ml"]
+[gd_scene load_steps=7 format=3 uid="uid://cv7052hlo24ml"]
 
 [ext_resource type="PackedScene" uid="uid://dh0532janr06w" path="res://scenes/enemies/enemy_container.tscn" id="1_tqhwl"]
 [ext_resource type="Texture2D" uid="uid://ca1upgd0buu1x" path="res://enemies.png" id="2_ce7nj"]
@@ -9,6 +9,8 @@ radius = 9.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_uljct"]
 radius = 10.0499
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_he56w"]
 
 [node name="Goomba" instance=ExtResource("1_tqhwl")]
 script = ExtResource("2_kubvc")
@@ -24,3 +26,6 @@ shape = SubResource("CircleShape2D_dxrgw")
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_uljct")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CircleShape2D_he56w")

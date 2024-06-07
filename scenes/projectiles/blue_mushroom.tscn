@@ -6,7 +6,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_1tcah"]
 
-[node name="BlueMushroom" instance=ExtResource("1_7xttu")]
+[node name="Blue Mushroom" instance=ExtResource("1_7xttu")]
 script = ExtResource("2_glraw")
 
 [node name="Sprite2D" parent="." index="0"]

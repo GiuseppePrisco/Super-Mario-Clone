@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bfnut1wm2wk52"]
+[gd_scene load_steps=7 format=3 uid="uid://bfnut1wm2wk52"]
 
 [ext_resource type="PackedScene" uid="uid://dh0532janr06w" path="res://scenes/enemies/enemy_container.tscn" id="1_ovatn"]
 [ext_resource type="Script" path="res://scenes/enemies/koopa.gd" id="2_4s0uu"]
@@ -9,6 +9,9 @@ radius = 13.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_skm25"]
 radius = 15.0333
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_brbra"]
+radius = 13.0
 
 [node name="Koopa" instance=ExtResource("1_ovatn")]
 script = ExtResource("2_4s0uu")
@@ -23,3 +26,6 @@ shape = SubResource("CircleShape2D_oo4ii")
 
 [node name="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_skm25")
+
+[node name="CollisionShape2D" parent="Hurtbox" index="0"]
+shape = SubResource("CircleShape2D_brbra")
