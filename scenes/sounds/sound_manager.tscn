@@ -18,3 +18,4 @@ bus = &"SFX"
 bus = &"SFX"
 
 [node name="Menu" type="AudioStreamPlayer" parent="."]
+process_mode = 3

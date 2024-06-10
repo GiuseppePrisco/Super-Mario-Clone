@@ -30,6 +30,7 @@ grow_vertical = 2
 text = "Start Game"
 
 [node name="GamePaused" type="Panel" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -98,6 +99,7 @@ layout_mode = 2
 text = "Home"
 
 [node name="GameNotPaused" type="HBoxContainer" parent="."]
+visible = false
 anchors_preset = -1
 anchor_left = 1.0
 anchor_top = 0.1
@@ -113,6 +115,24 @@ text = "Pause"
 
 [node name="UI" parent="GameNotPaused" instance=ExtResource("2_ja23p")]
 visible = false
+
+[node name="LevelUp" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="LevelUp"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.1
+anchor_top = 0.2
+anchor_right = 0.9
+anchor_bottom = 0.8
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 40
 
 [connection signal="pressed" from="ColorRect/StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="value_changed" from="GamePaused/VBoxContainer/VBoxContainer/Music Slider" to="." method="_on_music_slider_value_changed"]

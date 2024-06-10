@@ -1022,15 +1022,15 @@ collision_mask = 10
 position = Vector2(217, -21)
 collision_mask = 10
 
-[node name="Effects" type="Node2D" parent="."]
-
-[node name="Projectiles" type="Node2D" parent="."]
-metadata/_edit_lock_ = true
-
 [node name="Items" type="Node2D" parent="."]
 
 [node name="Star" parent="Items" instance=ExtResource("6_cud0b")]
 position = Vector2(-49, -92)
+
+[node name="Projectiles" type="Node2D" parent="."]
+metadata/_edit_lock_ = true
+
+[node name="Effects" type="Node2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource("2_0p8rr")]
 metadata/_edit_lock_ = true

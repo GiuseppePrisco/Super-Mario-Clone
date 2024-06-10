@@ -2,6 +2,7 @@ extends Node
 
 signal ui_change
 signal game_over
+signal level_up
 
 # player stats
 var original_player = {
@@ -33,6 +34,7 @@ var original_projectiles = {
 		"pierce": 1,
 		"cooldown": 0.5,
 		"can_be_fired": true,
+		"is_active": true,
 		"sound": load("res://assets/sounds/projectiles/fireball.wav"),
 		"volume": 0.3,
 	},
@@ -46,6 +48,7 @@ var original_projectiles = {
 		"pierce": 2,
 		"cooldown": 1,
 		"can_be_fired": true,
+		"is_active": false,
 		"sound": load("res://assets/sounds/items/coin.wav"),
 		"volume": 0.3,
 	},
@@ -59,6 +62,7 @@ var original_projectiles = {
 		"pierce": 9999999999,
 		"cooldown": 7,
 		"can_be_fired": true,
+		"is_active": false,
 		"sound": load("res://assets/sounds/items/coin.wav"),
 		"volume": 0.3,
 	},
@@ -72,6 +76,7 @@ var original_projectiles = {
 		"pierce": 9999999999,
 		"cooldown": 5,
 		"can_be_fired": true,
+		"is_active": false,
 		"sound": load("res://assets/sounds/items/coin.wav"),
 		"volume": 0.3,
 	},
@@ -124,6 +129,7 @@ var items = {
 var original_ui = {
 	"game_started": false,
 	"game_paused": false,
+	"can_be_paused": true,
 }
 var ui = original_ui.duplicate(true)
 
@@ -153,6 +159,9 @@ var sound_effects_files = {
 func update_player(property: String, value) -> void:
 	player[property] = value
 	ui_change.emit()
+	
+	if property == "level":
+		level_up.emit()
 	
 	# check if the player should be dead
 	if Globals.player["health"] <= 0:

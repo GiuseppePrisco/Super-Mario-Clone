@@ -78,7 +78,8 @@ func _physics_process(_delta):
 		
 		
 	for projectile in Globals.projectiles:
-		if Globals.projectiles[projectile].can_be_fired:
+		# check if the projectile can be fired and if it has been unlocked (is active)
+		if Globals.projectiles[projectile].can_be_fired and Globals.projectiles[projectile].is_active:
 			Globals.projectiles[projectile].can_be_fired = false
 			projectile_shot.emit(projectile, position, Globals.player["direction"])
 			
