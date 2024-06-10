@@ -140,13 +140,14 @@ func level_up():
 		
 		$LevelUp/HBoxContainer.add_child(projectile_card)
 	
-	
+	# there are still projectiles to be activated 
 	if possible_projectile_choices.size() != 0:
 		Globals.ui["can_be_paused"] = false
 		$LevelUp.show()
 		get_tree().paused = true
-	
-
+	# all the projectiles are activated
+	else:
+		Globals.power_up_projectile()
 
 
 func exit_game():

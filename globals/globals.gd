@@ -4,6 +4,8 @@ signal ui_change
 signal game_over
 signal level_up
 
+const PROJECTILE_POWER_UP_MULTIPLIER = 0.5
+
 # player stats
 var original_player = {
 	"position": Vector2.ZERO,
@@ -53,7 +55,7 @@ var original_projectiles = {
 		"volume": 0.3,
 	},
 	"blue_mushroom": {
-		"movement_speed": 300,
+		"movement_speed": 9999999999,
 		"direction": Vector2.UP,
 		"radius": 50,
 		"rotation_speed": 270,
@@ -155,7 +157,7 @@ var sound_effects_files = {
 	},
 	"damage_received": {
 		"sound": load("res://assets/sounds/menu/damage_received.mp3"),
-		"volume": 1,
+		"volume": 5,
 	},
 	"menu_button": {
 		"sound": load("res://assets/sounds/menu/menu_button.mp3"),
@@ -175,6 +177,36 @@ func update_player(property: String, value) -> void:
 	if Globals.player["health"] <= 0:
 		game_over.emit()
 
+
+func power_up_projectile():
+	var eligible_stats = []
+	var increasing_stats = ["movement_speed", "radius", "rotation_speed", "damage", "duration", "pierce"]
+#	var decreasing_stats = ["cooldown"]
+	var integer_stats = ["pierce"]
+	
+	var random_projectile = Globals.projectiles.keys().pick_random()
+	
+	match random_projectile:
+		"fireball", "mushroom":
+			eligible_stats = ["movement_speed", "damage", "pierce", "cooldown"]
+		"blue_mushroom":
+			eligible_stats = ["rotation_speed", "radius", "damage", "duration", "cooldown"]
+		"fire_flower":
+			eligible_stats = ["radius", "damage", "duration", "cooldown"]
+	
+	var random_stat = eligible_stats.pick_random()
+	
+	# assign the correct moltiplication sign based on wheter the stat should decrease or increase
+	var sum_sign = 1 if random_stat in increasing_stats else -1
+	
+	# check if the stat should use the ceil function
+	if random_stat in integer_stats:
+		# the selected random stat is an integer stat
+		Globals.projectiles[random_projectile][random_stat] += ceil(sum_sign * Globals.projectiles[random_projectile][random_stat] * PROJECTILE_POWER_UP_MULTIPLIER)
+	else:
+		# the selected random stat is not an integer stat
+		Globals.projectiles[random_projectile][random_stat] += sum_sign * Globals.projectiles[random_projectile][random_stat] * PROJECTILE_POWER_UP_MULTIPLIER
+		
 
 func reset_game_stats():
 	projectiles = original_projectiles.duplicate(true)
