@@ -3,12 +3,12 @@
 [ext_resource type="Texture2D" uid="uid://w6jmcjocqrn8" path="res://assets/sprites/mushroom.png" id="1_k6apo"]
 
 [node name="ProjectileCard" type="Panel"]
+custom_minimum_size = Vector2(128, 192)
 anchors_preset = -1
 anchor_left = 0.4
 anchor_top = 0.3
 anchor_right = 0.6
 anchor_bottom = 0.7
-size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]

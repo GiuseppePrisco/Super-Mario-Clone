@@ -42,6 +42,11 @@ func _process(_delta):
 		Globals.update_player("health", Globals.player["health"] - Globals.enemies[enemy].damage)
 		print("health after ", Globals.player["health"])
 		
+		var effect = "damage_received"
+		var sound = Globals.sound_effects_files[effect].sound
+		var volume = Globals.sound_effects_files[effect].volume
+		SoundManager.play_item_collected_sound_effect(sound, volume)
+		
 		should_player_take_damage = false
 		$"Hitbox/Hitbox Timer".set_wait_time(Globals.enemies[enemy].cooldown)
 		$"Hitbox/Hitbox Timer".start()

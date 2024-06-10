@@ -152,7 +152,15 @@ var sound_effects_files = {
 	"level_up": {
 		"sound": load("res://assets/sounds/menu/level_up.wav"),
 		"volume": 0.2,
-	}
+	},
+	"damage_received": {
+		"sound": load("res://assets/sounds/menu/damage_received.mp3"),
+		"volume": 1,
+	},
+	"menu_button": {
+		"sound": load("res://assets/sounds/menu/menu_button.mp3"),
+		"volume": 20,
+	},
 }
 
 

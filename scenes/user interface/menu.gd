@@ -6,6 +6,9 @@ extends CanvasLayer
 var projectile_card_scene: PackedScene = preload("res://scenes/user interface/projectile_card.tscn")
 
 
+var menu_button_sound = Globals.sound_effects_files["menu_button"].sound
+var menu_button_volume = Globals.sound_effects_files["menu_button"].volume
+
 
 func _ready():
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -55,6 +58,8 @@ func _on_start_button_pressed():
 	var volume = Globals.music_files[music_name].volume
 	SoundManager.play_music(music, volume)
 	
+	SoundManager.play_menu_sound_effect(menu_button_sound, menu_button_volume)
+	
 
 func _on_pause_button_pressed():
 	$GameNotPaused.hide()
@@ -74,6 +79,8 @@ func _on_resume_button_pressed():
 	get_tree().paused = false
 	Globals.ui["game_paused"] = false
 
+	SoundManager.play_menu_sound_effect(menu_button_sound, menu_button_volume)
+	
 
 func _on_home_button_pressed():
 	Globals.ui["game_started"] = false
