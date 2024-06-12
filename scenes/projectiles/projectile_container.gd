@@ -53,7 +53,6 @@ func _process(delta):
 		direction = Globals.projectiles[projectile].direction
 		
 		
-	
 	if projectile == "blue_mushroom":
 		rotation_angle += deg_to_rad(rotation_speed) * delta
 

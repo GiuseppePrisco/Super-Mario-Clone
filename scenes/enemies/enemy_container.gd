@@ -36,7 +36,7 @@ func _process(_delta):
 	velocity = movement_speed * player_direction
 	move_and_slide()
 	
-	if is_colliding_with_player and should_player_take_damage:
+	if is_colliding_with_player and should_player_take_damage and !Globals.player.is_immortal:
 
 		print("health before ", Globals.player["health"])
 		Globals.update_player("health", Globals.player["health"] - Globals.enemies[enemy].damage)

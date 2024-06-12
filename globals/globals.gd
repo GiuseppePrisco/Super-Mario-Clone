@@ -5,6 +5,7 @@ signal game_over
 signal level_up
 
 const PROJECTILE_POWER_UP_MULTIPLIER = 0.5
+var active_timers: Array = []
 
 # player stats
 var original_player = {
@@ -12,6 +13,7 @@ var original_player = {
 	"local_position": Vector2.ZERO,
 	"direction": Vector2.RIGHT,
 	"movement_speed": 200,
+	"is_immortal": false,
 	"max_health": 200,
 	"health": 200,
 	"armor": 10,
@@ -135,6 +137,7 @@ var original_ui = {
 }
 var ui = original_ui.duplicate(true)
 
+
 var music_files = {
 	"background": {
 		"music": load("res://assets/sounds/music/background.mp3"),
@@ -172,6 +175,15 @@ func update_player(property: String, value) -> void:
 	
 	if property == "level":
 		level_up.emit()
+		
+		Globals.player.is_immortal = true
+		
+		var immortal_timer: Timer = Timer.new()
+		active_timers.append(immortal_timer)
+		add_child(immortal_timer)
+		immortal_timer.set_wait_time(2)
+		immortal_timer.start()
+		immortal_timer.connect("timeout", _on_immortal_timer_timeout.bind(immortal_timer))
 	
 	# check if the player should be dead
 	if Globals.player["health"] <= 0:
@@ -216,4 +228,20 @@ func reset_game_stats():
 	# stop all audio streams
 	for audio_stream in SoundManager.get_children():
 		audio_stream.stop()
+		
+	# clear the array containing the active timers
+	active_timers.clear()
+		
+	# TODO at the end, check if there are other nodes added to the Globals node, other than the immortal timers
+	# remove all the nodes
+	for node in get_children():
+		remove_child(node)
+		node.queue_free()
 
+func _on_immortal_timer_timeout(immortal_timer):
+	active_timers.erase(immortal_timer)
+	if active_timers.size() == 0:
+		Globals.player.is_immortal = false
+	remove_child(immortal_timer)
+	immortal_timer.queue_free()
+	
